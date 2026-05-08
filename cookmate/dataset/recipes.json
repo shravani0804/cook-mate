@@ -1,0 +1,75 @@
+[
+    {
+        "name": "Pasta",
+        "ingredients": [
+            "pasta",
+            "cheese",
+            "olive oil",
+            "mixed herbs"
+        ],
+        "instructions": "Boil pasta and mix ingredients.",
+        "cooking_time": 20,
+        "difficulty": "easy",
+        "calories": 350,
+        "protein": 12
+    },
+
+    {
+        "name": "Coffee",
+        "ingredients": [
+            "coffee",
+            "milk",
+            "sugar"
+        ],
+        "instructions": "Mix coffee with milk and sugar.",
+        "cooking_time": 5,
+        "difficulty": "easy",
+        "calories": 120,
+        "protein": 3
+    },
+
+    {
+        "name": "Sandwich",
+        "ingredients": [
+            "bread",
+            "butter",
+            "cheese",
+            "tomato"
+        ],
+        "instructions": "Assemble ingredients between bread slices.",
+        "cooking_time": 10,
+        "difficulty": "easy",
+        "calories": 250,
+        "protein": 8
+    },
+
+    {
+        "name": "Paneer Curry",
+        "ingredients": [
+            "paneer",
+            "tomato",
+            "onion",
+            "cream"
+        ],
+        "instructions": "Cook paneer in spicy gravy.",
+        "cooking_time": 35,
+        "difficulty": "medium",
+        "calories": 450,
+        "protein": 18
+    },
+
+    {
+        "name": "Fruit Salad",
+        "ingredients": [
+            "apple",
+            "banana",
+            "orange",
+            "grapes"
+        ],
+        "instructions": "Mix all fruits together.",
+        "cooking_time": 5,
+        "difficulty": "easy",
+        "calories": 150,
+        "protein": 2
+    }
+]

@@ -1,0 +1,118 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Vertical Use Case">
+    <mxGraphModel grid="1" gridSize="10">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Actors -->
+        <mxCell id="user" value="End User" style="shape=umlActor;" vertex="1" parent="1">
+          <mxGeometry x="350" y="20" width="80" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="admin" value="Admin" style="shape=umlActor;" vertex="1" parent="1">
+          <mxGeometry x="700" y="300" width="80" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- System -->
+        <mxCell id="system" value="CookMate System" style="rounded=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="120" width="500" height="600" as="geometry"/>
+        </mxCell>
+
+        <!-- Main Use Case -->
+        <mxCell id="main" value="Get Recipe Recommendation" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="140" y="40" width="220" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Include -->
+        <mxCell id="inc1" value="Normalize Ingredients" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="40" y="140" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="inc2" value="Match Ingredients" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="260" y="140" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="inc3" value="Calculate Scores" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="40" y="220" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="inc4" value="Rank Recipes" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="260" y="220" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Extend Filters -->
+        <mxCell id="ext1" value="Apply Filters (Health/Context)" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="140" y="300" width="220" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- View Recipes -->
+        <mxCell id="view" value="View Recipes" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="140" y="380" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Extend Outputs -->
+        <mxCell id="ext2" value="View Nutrition" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="40" y="480" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ext3" value="View Scores" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="260" y="480" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ext4" value="Generate Shopping List" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="140" y="550" width="220" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Admin Use Case -->
+        <mxCell id="adminUC" value="Manage Dataset" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="350" y="630" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Connections -->
+        <mxCell edge="1" source="user" target="main" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" source="admin" target="adminUC" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Include -->
+        <mxCell value="&lt;&lt;include&gt;&gt;" edge="1" source="main" target="inc1" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell value="&lt;&lt;include&gt;&gt;" edge="1" source="main" target="inc2" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell value="&lt;&lt;include&gt;&gt;" edge="1" source="main" target="inc3" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell value="&lt;&lt;include&gt;&gt;" edge="1" source="main" target="inc4" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Extend -->
+        <mxCell value="&lt;&lt;extend&gt;&gt;" edge="1" source="ext1" target="main" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell value="&lt;&lt;extend&gt;&gt;" edge="1" source="ext2" target="view" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell value="&lt;&lt;extend&gt;&gt;" edge="1" source="ext3" target="view" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell value="&lt;&lt;extend&gt;&gt;" edge="1" source="ext4" target="view" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

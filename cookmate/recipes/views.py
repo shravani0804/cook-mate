@@ -1,0 +1,380 @@
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+
+
+from .models import (
+    Recipe,
+    Ingredient,
+    Nutrition,
+    SearchHistory,
+    ShoppingList,
+    Favorite,
+    IngredientAlias
+)
+
+
+def signup(request):
+
+    if request.method == 'POST':
+
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('/')
+
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'registration/signup.html', {
+        'form': form
+    })
+
+
+def home(request):
+
+    recommended_recipes = []
+    recent_searches = []
+    shopping_list = []
+    favorite_recipe_ids = []
+
+    # Trending Recipes
+    trending_recipes = Recipe.objects.order_by(
+        '-popularity_score'
+    )[:6]
+
+    # Logged-in user data
+    if request.user.is_authenticated:
+
+        favorite_recipe_ids = Favorite.objects.filter(
+            user=request.user
+        ).values_list(
+            'recipe_id',
+            flat=True
+        )
+
+        recent_searches = SearchHistory.objects.filter(
+            user=request.user
+        ).order_by('-created_at')[:5]
+
+        shopping_list = ShoppingList.objects.filter(
+            user=request.user
+        ).order_by('-created_at')
+
+    # FORM SUBMIT
+    if request.method == 'POST':
+
+        user_input = request.POST.get(
+            'ingredients',
+            ''
+        )
+
+        selected_goal = request.POST.get(
+            'health_goal'
+        )
+
+        # Save Search History
+        if request.user.is_authenticated and user_input:
+
+            SearchHistory.objects.create(
+                user=request.user,
+                ingredients=user_input
+            )
+
+        # User Ingredients
+        user_ingredients = [
+            item.strip().lower()
+            for item in user_input.split(',')
+            if item.strip()
+        ]
+
+        # Normalize Ingredients
+        normalized_ingredients = []
+
+        for ingredient in user_ingredients:
+
+            alias = IngredientAlias.objects.filter(
+                alias=ingredient
+            ).first()
+
+            if alias:
+
+                normalized_ingredients.append(
+                    alias.normalized_name.lower()
+                )
+
+            else:
+
+                normalized_ingredients.append(
+                    ingredient.lower()
+                )
+
+        recipes = Recipe.objects.all()
+
+        all_missing = []
+
+        for recipe in recipes:
+
+            recipe_ingredients = [
+                ingredient.name.lower()
+                for ingredient in recipe.ingredients.all()
+            ]
+
+            matched = []
+            missing = []
+
+            for ingredient in recipe_ingredients:
+
+                if ingredient in normalized_ingredients:
+
+                    matched.append(ingredient)
+
+                else:
+
+                    missing.append(ingredient)
+
+            # Recommend only matched recipes
+            if matched:
+
+                # Match Score
+                match_score = (
+                    len(matched) /
+                    len(recipe_ingredients)
+                ) * 100
+
+                # Health Score
+                health_score = 50
+
+                if hasattr(recipe, 'nutrition'):
+
+                    if (
+                        selected_goal == 'weight_loss'
+                        and recipe.nutrition.calories < 400
+                    ):
+
+                        health_score = 90
+
+                    elif (
+                        selected_goal == 'muscle_gain'
+                        and recipe.nutrition.protein > 15
+                    ):
+
+                        health_score = 90
+
+                # Ease Score
+                ease_score = max(
+                    0,
+                    100 - (len(missing) * 10)
+                )
+
+                # Final Score
+                final_score = (
+                    (match_score * 0.5) +
+                    (health_score * 0.3) +
+                    (ease_score * 0.2)
+                )
+
+                recommended_recipes.append({
+
+                    'recipe': recipe,
+
+                    'matched': matched,
+
+                    'missing': missing,
+
+                    'match_score': round(
+                        match_score,
+                        1
+                    ),
+
+                    'health_score': round(
+                        health_score,
+                        1
+                    ),
+
+                    'ease_score': round(
+                        ease_score,
+                        1
+                    ),
+
+                    'final_score': round(
+                        final_score,
+                        1
+                    )
+                })
+
+                all_missing.extend(missing)
+
+        # SORT RECIPES
+        recommended_recipes = sorted(
+            recommended_recipes,
+            key=lambda x: x['final_score'],
+            reverse=True
+        )
+
+        # TOP 10
+        recommended_recipes = recommended_recipes[:10]
+
+        # UNIQUE MISSING INGREDIENTS
+        unique_missing = list(set(all_missing))
+
+        # SHOPPING LIST
+        if request.user.is_authenticated:
+
+
+            # Reload updated shopping list
+            shopping_list = ShoppingList.objects.filter(
+                user=request.user
+            ).order_by('-created_at')
+
+    return render(request, 'home.html', {
+
+        'recommended_recipes': recommended_recipes,
+
+        'recent_searches': recent_searches,
+
+        'shopping_list': shopping_list,
+
+        'favorite_recipe_ids': favorite_recipe_ids,
+
+        'trending_recipes': trending_recipes
+    })
+    
+@login_required
+def toggle_favorite(request, recipe_id):
+
+    recipe = get_object_or_404(
+        Recipe,
+        id=recipe_id
+    )
+
+    favorite = Favorite.objects.filter(
+        user=request.user,
+        recipe=recipe
+    )
+
+    if favorite.exists():
+
+        favorite.delete()
+
+    else:
+
+        Favorite.objects.create(
+            user=request.user,
+            recipe=recipe
+        )
+
+    return redirect('/')
+
+
+@login_required
+def clear_shopping_list(request):
+
+    ShoppingList.objects.filter(
+    user=request.user
+    
+    ).delete()
+
+    return redirect('/')
+
+@login_required
+def add_recipe(request):
+
+    ingredients = Ingredient.objects.all()
+
+    if request.method == 'POST':
+
+        name = request.POST.get('name')
+        instructions = request.POST.get('instructions')
+        cooking_time = request.POST.get('cooking_time')
+        difficulty = request.POST.get('difficulty')
+        image = request.FILES.get('image')
+
+        selected_ingredients = request.POST.getlist(
+            'ingredients'
+        )
+
+        recipe = Recipe.objects.create(
+            name=name,
+            instructions=instructions,
+            cooking_time=cooking_time,
+            difficulty=difficulty,
+            image=image,
+            user=request.user
+        )
+
+        for ingredient_id in selected_ingredients:
+
+            ingredient = Ingredient.objects.get(
+                id=ingredient_id
+            )
+
+            recipe.ingredients.add(ingredient)
+
+        Nutrition.objects.create(
+            recipe=recipe,
+            calories=200,
+            protein=10,
+            carbs=20,
+            fats=5
+        )
+
+        return redirect('/')
+
+    return render(request, 'add_recipe.html', {
+        'ingredients': ingredients
+    })
+
+@login_required
+def favorites(request):
+
+    favorite_items = Favorite.objects.filter(
+        user=request.user
+    ).select_related('recipe')
+
+    return render(request, 'favorites.html', {
+        'favorite_items': favorite_items
+    })
+@login_required
+def add_to_shopping(request, recipe_id):
+
+    recipe = get_object_or_404(
+        Recipe,
+        id=recipe_id
+    )
+
+    user_ingredients = []
+
+    latest_search = SearchHistory.objects.filter(
+        user=request.user
+    ).order_by('-created_at').first()
+
+    if latest_search:
+
+        user_ingredients = [
+            ingredient.strip().lower()
+            for ingredient in latest_search.ingredients.split(',')
+        ]
+
+    recipe_ingredients = recipe.ingredients.all()
+
+    for ingredient in recipe_ingredients:
+
+        if ingredient.name.lower() not in user_ingredients:
+
+            exists = ShoppingList.objects.filter(
+                user=request.user,
+                ingredient=ingredient
+            ).exists()
+
+            if not exists:
+
+                ShoppingList.objects.create(
+                    user=request.user,
+                    ingredient=ingredient
+                )
+
+    return redirect('/')

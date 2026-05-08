@@ -1,0 +1,143 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="CookMate Class Diagram">
+    <mxGraphModel grid="1" gridSize="10" guides="1" connect="1">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ================= CLASSES ================= -->
+
+        <!-- User -->
+        <mxCell id="user" value="User
+-------------------------
+- userId: int
+- name: string
+- preferenceType: string
+-------------------------
++ setPreferences()
++ getPreferences()" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="40" width="200" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- UI -->
+        <mxCell id="ui" value="UserInterface
+-------------------------
+-------------------------
++ getInput()
++ displayResults()" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="40" width="200" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Recommendation Engine -->
+        <mxCell id="engine" value="RecommendationEngine
+-------------------------
+-------------------------
++ processInput()
++ generateRecommendations()
++ coordinateModules()" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="220" width="260" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- Ingredient Processor -->
+        <mxCell id="processor" value="IngredientProcessor
+-------------------------
+-------------------------
++ normalizeIngredients()" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="240" width="200" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Recipe -->
+        <mxCell id="recipe" value="Recipe
+-------------------------
+- recipeId: int
+- name: string
+- instructions: string
+- cookingTime: int
+-------------------------
++ getDetails()" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="220" width="220" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- Ingredient -->
+        <mxCell id="ingredient" value="Ingredient
+-------------------------
+- ingredientId: int
+- name: string
+-------------------------
++ standardize()" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="420" width="200" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Scoring System -->
+        <mxCell id="scoring" value="ScoringSystem
+-------------------------
+-------------------------
++ calculateMatchScore()
++ calculateHealthScore()
++ calculateFinalScore()" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="420" width="260" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- Nutrition -->
+        <mxCell id="nutrition" value="NutritionCalculator
+-------------------------
+-------------------------
++ calculateNutrition()" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="420" width="200" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Shopping List -->
+        <mxCell id="shopping" value="ShoppingList
+-------------------------
+- missingItems: list
+-------------------------
++ generateList()" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="600" width="200" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= RELATIONSHIPS ================= -->
+
+        <!-- User -> UI -->
+        <mxCell edge="1" source="user" target="ui" parent="1" value="">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- UI -> Engine -->
+        <mxCell edge="1" source="ui" target="engine" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Engine -> Processor -->
+        <mxCell edge="1" source="engine" target="processor" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Engine -> Recipe -->
+        <mxCell edge="1" source="engine" target="recipe" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Recipe -> Ingredient -->
+        <mxCell edge="1" source="recipe" target="ingredient" parent="1" value="*">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Engine -> Scoring -->
+        <mxCell edge="1" source="engine" target="scoring" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Engine -> Nutrition -->
+        <mxCell edge="1" source="engine" target="nutrition" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Engine -> Shopping -->
+        <mxCell edge="1" source="engine" target="shopping" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

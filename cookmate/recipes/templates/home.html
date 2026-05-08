@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CookMate</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Segoe UI',sans-serif;
+            background:#f4f6fb;
+            color:#333;
+        }
+
+        .container{
+            width:90%;
+            max-width:1300px;
+            margin:auto;
+            padding:30px 0;
+        }
+
+        /* HEADER */
+
+        .header{
+            background:linear-gradient(
+                135deg,
+                #ff9966,
+                #ff5e62
+            );
+            color:white;
+            padding:40px;
+            border-radius:20px;
+            text-align:center;
+            margin-bottom:30px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .header h1{
+            font-size:48px;
+            margin-bottom:10px;
+        }
+
+        .header p{
+            font-size:18px;
+            opacity:0.9;
+        }
+
+        /* TOP BAR */
+
+        .top-bar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+            flex-wrap:wrap;
+            gap:15px;
+        }
+
+        .top-left{
+            display:flex;
+            align-items:center;
+            gap:15px;
+            flex-wrap:wrap;
+        }
+
+        .top-right{
+            display:flex;
+            gap:12px;
+            align-items:center;
+        }
+
+        .welcome{
+            font-size:18px;
+            font-weight:600;
+        }
+
+        /* BUTTONS */
+
+        .btn{
+            padding:10px 18px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            text-decoration:none;
+            font-size:15px;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .btn-primary{
+            background:#ff5e62;
+            color:white;
+        }
+
+        .btn-primary:hover{
+            background:#e04c51;
+        }
+
+        .btn-secondary{
+            background:#4caf50;
+            color:white;
+        }
+
+        .btn-secondary:hover{
+            background:#3f9443;
+        }
+
+        /* CARD */
+
+        .card{
+            background:white;
+            border-radius:18px;
+            padding:25px;
+            margin-bottom:30px;
+            box-shadow:0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .card h2{
+            margin-bottom:20px;
+            color:#222;
+        }
+
+        /* INGREDIENT INPUT */
+
+        .ingredient-box{
+            display:flex;
+            gap:12px;
+            margin-bottom:20px;
+        }
+
+        .ingredient-box input{
+            flex:1;
+            padding:14px;
+            border-radius:10px;
+            border:1px solid #ddd;
+            font-size:15px;
+        }
+
+        .ingredient-tags{
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin-bottom:20px;
+        }
+
+        .tag{
+            background:#ffe4dc;
+            color:#ff5e62;
+            padding:10px 15px;
+            border-radius:30px;
+            font-size:14px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .tag button{
+            background:none;
+            border:none;
+            color:#ff5e62;
+            cursor:pointer;
+            font-weight:bold;
+            font-size:16px;
+        }
+
+        select{
+            width:100%;
+            padding:14px;
+            border-radius:10px;
+            border:1px solid #ddd;
+            margin-bottom:20px;
+            font-size:15px;
+        }
+
+        /* RECENT SEARCH */
+
+        .recent-searches{
+            margin-top:20px;
+        }
+
+        .recent-tags{
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin-top:12px;
+        }
+
+        .recent-item{
+            background:#eef2ff;
+            color:#3949ab;
+            padding:10px 15px;
+            border-radius:25px;
+            font-size:14px;
+        }
+
+        /* RECIPE GRID */
+
+        .recipe-grid{
+            display:grid;
+            grid-template-columns:repeat(
+                auto-fit,
+                minmax(350px,1fr)
+            );
+            gap:25px;
+        }
+
+        .recipe-card{
+            background:white;
+            border-radius:18px;
+            overflow:hidden;
+            box-shadow:0 5px 18px rgba(0,0,0,0.08);
+            transition:0.3s;
+        }
+
+        .recipe-card:hover{
+            transform:translateY(-5px);
+        }
+
+        .recipe-image{
+            width:100%;
+            height:220px;
+            object-fit:cover;
+        }
+
+        .recipe-content{
+            padding:20px;
+        }
+
+        .recipe-title{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:15px;
+        }
+
+        .recipe-title h3{
+            color:#ff5e62;
+            font-size:24px;
+        }
+
+        .favorite-btn{
+            text-decoration:none;
+            font-size:26px;
+        }
+
+        .meta{
+            margin-bottom:15px;
+            color:#555;
+            line-height:1.7;
+        }
+
+        /* NUTRITION */
+
+        .nutrition-grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:10px;
+            margin:15px 0;
+        }
+
+        .nutri-card{
+            background:#f8f8f8;
+            padding:12px;
+            border-radius:12px;
+            text-align:center;
+        }
+
+        .nutri-card h4{
+            margin:0;
+            color:#ff5e62;
+            font-size:18px;
+        }
+
+        .nutri-card span{
+            font-size:13px;
+            color:#666;
+        }
+
+        /* SCORES */
+
+        .score-container{
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin-bottom:18px;
+        }
+
+        .score{
+            padding:8px 12px;
+            border-radius:8px;
+            color:white;
+            font-size:13px;
+            font-weight:600;
+        }
+
+        .match{
+            background:#4caf50;
+        }
+
+        .health{
+            background:#2196f3;
+        }
+
+        .ease{
+            background:#ff9800;
+        }
+
+        .final{
+            background:#9c27b0;
+        }
+
+        /* MATCHED + MISSING */
+
+        .matched{
+            color:#2e7d32;
+            margin-bottom:10px;
+        }
+
+      .missing{
+            color:#d32f2f;
+            margin-bottom:15px;
+            background:#fff3f3;
+            padding:12px;
+            border-radius:10px;
+        }
+
+        .missing ul{
+            margin-top:8px;
+            padding-left:20px;
+        }
+
+        .missing li{
+            margin-bottom:5px;
+        }
+        /* TRENDING */
+
+        .trending-grid{
+            display:grid;
+            grid-template-columns:repeat(
+                auto-fit,
+                minmax(250px,1fr)
+            );
+            gap:20px;
+        }
+
+        .trend-card{
+            background:white;
+            border-radius:15px;
+            overflow:hidden;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .trend-card img{
+            width:100%;
+            height:180px;
+            object-fit:cover;
+        }
+
+        .trend-card h4{
+            padding:15px;
+            font-size:18px;
+        }
+
+        /* SHOPPING LIST */
+
+        .shopping-list ul{
+            margin-top:15px;
+            padding-left:20px;
+        }
+
+        .shopping-list li{
+            margin-bottom:12px;
+            font-size:16px;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            .ingredient-box{
+                flex-direction:column;
+            }
+
+            .top-bar{
+                flex-direction:column;
+                align-items:flex-start;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>🍳 CookMate</h1>
+
+        <p>
+            Smart Recipe Recommendation System
+        </p>
+
+    </div>
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+
+        <div class="top-left">
+
+            {% if user.is_authenticated %}
+
+            <div class="welcome">
+
+                Welcome,
+                <strong>
+                    {{ request.user.username }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        <div class="top-right">
+
+            {% if user.is_authenticated %}
+
+            <a
+                href="/add-recipe/"
+                class="btn btn-secondary"
+            >
+                + Add Recipe
+            </a>
+
+            <a
+                href="/favorites/"
+                class="btn btn-primary"
+            >
+                Favorites
+            </a>
+
+            <form
+                method="POST"
+                action="{% url 'logout' %}"
+            >
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Logout
+                </button>
+
+            </form>
+
+            {% else %}
+
+            <a
+                href="/accounts/login/"
+                class="btn btn-primary"
+            >
+                Login
+            </a>
+
+            <a
+                href="/signup/"
+                class="btn btn-secondary"
+            >
+                Signup
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- INGREDIENT SECTION -->
+
+    <div class="card">
+
+        <h2>🥗 Select Ingredients</h2>
+
+        <form
+            method="POST"
+            onsubmit="prepareIngredients()"
+        >
+
+            {% csrf_token %}
+
+            <div class="ingredient-box">
+
+                <input
+                    type="text"
+                    id="ingredientInput"
+                    placeholder="Enter ingredient"
+                >
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="addIngredient()"
+                >
+                    Add
+                </button>
+
+            </div>
+
+            <div
+                class="ingredient-tags"
+                id="ingredientTags"
+            >
+            </div>
+
+            <input
+                type="hidden"
+                name="ingredients"
+                id="hiddenIngredients"
+            >
+
+            <select name="health_goal">
+
+                <option value="none">
+                    No Preference
+                </option>
+
+                <option value="weight_loss">
+                    Weight Loss
+                </option>
+
+                <option value="muscle_gain">
+                    Muscle Gain
+                </option>
+
+            </select>
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Find Recipes
+            </button>
+
+        </form>
+
+        <!-- RECENT SEARCH -->
+
+        {% if recent_searches %}
+
+        <div class="recent-searches">
+
+            <h3>🕒 Recent Searches</h3>
+
+            <div class="recent-tags">
+
+                {% for search in recent_searches %}
+
+                <div class="recent-item">
+
+                    {{ search.ingredients }}
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    <!-- TRENDING -->
+
+    {% if trending_recipes %}
+
+    <div class="card">
+
+        <h2>🔥 Trending Recipes</h2>
+
+        <div class="trending-grid">
+
+            {% for recipe in trending_recipes %}
+
+            <div class="trend-card">
+
+                {% if recipe.image %}
+
+                <img src="{{ recipe.image.url }}">
+
+                {% endif %}
+
+                <h4>{{ recipe.name }}</h4>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    <!-- RECOMMENDED -->
+
+    {% if recommended_recipes %}
+
+    <div class="card">
+
+        <h2>
+
+            🍽 Recommended Recipes
+
+            ({{ recommended_recipes|length }})
+
+        </h2>
+
+        <div class="recipe-grid">
+
+            {% for item in recommended_recipes %}
+
+            <div class="recipe-card">
+
+                {% if item.recipe.image %}
+
+                <img
+                    src="{{ item.recipe.image.url }}"
+                    class="recipe-image"
+                >
+
+                {% endif %}
+
+                <div class="recipe-content">
+
+                    <div class="recipe-title">
+
+                        <h3>
+                            {{ item.recipe.name }}
+                        </h3>
+
+                        <a
+                            href="/favorite/{{ item.recipe.id }}/"
+                            class="favorite-btn"
+                        >
+
+                            {% if item.recipe.id in favorite_recipe_ids %}
+
+                            ❤️
+
+                            {% else %}
+
+                            🤍
+
+                            {% endif %}
+
+                        </a>
+
+                    </div>
+
+                    <div class="meta">
+
+                        ⏱ Cooking Time:
+                        {{ item.recipe.cooking_time }} mins
+
+                        <br>
+
+                        📌 Difficulty:
+                        {{ item.recipe.difficulty }}
+
+                    </div>
+
+                    <!-- NUTRITION -->
+
+                    <div class="nutrition-grid">
+
+                        <div class="nutri-card">
+                            <h4>
+                                {{ item.recipe.nutrition.calories }}
+                            </h4>
+                            <span>Calories</span>
+                        </div>
+
+                        <div class="nutri-card">
+                            <h4>
+                                {{ item.recipe.nutrition.protein }}g
+                            </h4>
+                            <span>Protein</span>
+                        </div>
+
+                        <div class="nutri-card">
+                            <h4>
+                                {{ item.recipe.nutrition.carbs }}g
+                            </h4>
+                            <span>Carbs</span>
+                        </div>
+
+                        <div class="nutri-card">
+                            <h4>
+                                {{ item.recipe.nutrition.fats }}g
+                            </h4>
+                            <span>Fats</span>
+                        </div>
+
+                    </div>
+
+                    <!-- SCORES -->
+
+                    <div class="score-container">
+
+                        <div class="score match">
+                            Match: {{ item.match_score }}
+                        </div>
+
+                        <div class="score health">
+                            Health: {{ item.health_score }}
+                        </div>
+
+                        <div class="score ease">
+                            Ease: {{ item.ease_score }}
+                        </div>
+
+                        <div class="score final">
+                            Final: {{ item.final_score }}
+                        </div>
+
+                    </div>
+
+                    {% if item.matched %}
+
+                    <div class="matched">
+
+                        <strong>Matched:</strong>
+
+                        {{ item.matched|join:", " }}
+
+                    </div>
+
+                    {% endif %}
+
+                    {% if item.missing %}
+
+                   <div class="missing">
+
+                    <strong>Missing Ingredients:</strong>
+
+                    <ul>
+
+                        {% for ingredient in item.missing %}
+
+                        <li>
+                            {{ ingredient }}
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                    </div>
+
+                    {% endif %}
+
+                    <!-- SHOPPING BUTTON -->
+
+                    <form
+                        method="POST"
+                        action="{% url 'add_to_shopping' item.recipe.id %}"
+                    >
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            Add These Missing Ingredients To Shopping List
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    <!-- SHOPPING LIST -->
+
+    {% if shopping_list %}
+
+    <div class="card">
+
+        <h2>🛒 Shopping List</h2>
+
+        <div class="shopping-list">
+
+            <ul>
+
+                {% for item in shopping_list %}
+
+                <li>
+
+                    {{ item.ingredient.name }}
+
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+        <br>
+
+        <a
+            href="/clear-shopping-list/"
+            class="btn btn-primary"
+        >
+            Clear Shopping List
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<script>
+
+    let ingredients = [];
+
+    function addIngredient(){
+
+        let input =
+            document.getElementById(
+                "ingredientInput"
+            );
+
+        let value =
+            input.value.trim().toLowerCase();
+
+        if(value !== ""){
+
+            ingredients.push(value);
+
+            renderIngredients();
+
+            input.value = "";
+        }
+    }
+
+    function removeIngredient(index){
+
+        ingredients.splice(index,1);
+
+        renderIngredients();
+    }
+
+    function renderIngredients(){
+
+        let container =
+            document.getElementById(
+                "ingredientTags"
+            );
+
+        container.innerHTML = "";
+
+        ingredients.forEach((item,index)=>{
+
+            container.innerHTML += `
+            
+            <div class="tag">
+
+                ${item}
+
+                <button
+                    type="button"
+                    onclick="removeIngredient(${index})"
+                >
+                    ×
+                </button>
+
+            </div>
+            
+            `;
+        });
+    }
+
+    function prepareIngredients(){
+
+        document.getElementById(
+            "hiddenIngredients"
+        ).value = ingredients.join(",");
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Sequence Diagram">
+    <mxGraphModel grid="1" gridSize="10" guides="1" connect="1" arrows="1">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Participants -->
+        <mxCell id="user" value="User" style="shape=umlLifeline;" vertex="1" parent="1">
+          <mxGeometry x="50" y="20" width="100" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ui" value="UI" style="shape=umlLifeline;" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="100" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="processor" value="Ingredient Processor" style="shape=umlLifeline;" vertex="1" parent="1">
+          <mxGeometry x="350" y="20" width="120" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="engine" value="Recommendation Engine" style="shape=umlLifeline;" vertex="1" parent="1">
+          <mxGeometry x="520" y="20" width="140" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="dataset" value="Recipe Dataset" style="shape=umlLifeline;" vertex="1" parent="1">
+          <mxGeometry x="700" y="20" width="130" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="scoring" value="Scoring System" style="shape=umlLifeline;" vertex="1" parent="1">
+          <mxGeometry x="870" y="20" width="130" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="nutrition" value="Nutrition Calculator" style="shape=umlLifeline;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="20" width="150" height="700" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="shopping" value="Shopping Module" style="shape=umlLifeline;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="20" width="150" height="700" as="geometry"/>
+        </mxCell>
+
+        <!-- Messages -->
+
+        <mxCell edge="1" parent="1" source="user" target="ui" value="Enter ingredients &amp; preferences">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="ui" target="processor" value="normalizeIngredients()">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="processor" target="ui" value="processedIngredients">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="ui" target="engine" value="sendIngredients()">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="engine" target="dataset" value="fetchRecipes()">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="dataset" target="engine" value="recipeData">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="engine" target="scoring" value="calculateScores()">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="scoring" target="engine" value="scores">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="engine" target="nutrition" value="calculateNutrition()">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="nutrition" target="engine" value="nutritionData">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="engine" target="shopping" value="identifyMissingIngredients()">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="shopping" target="engine" value="missingList">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="engine" target="ui" value="sendRecommendations()">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="ui" target="user" value="Display results">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,98 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="CookMate ERD Final">
+    <mxGraphModel grid="1" gridSize="10" guides="1" connect="1">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ===== ENTITIES ===== -->
+
+        <!-- User -->
+        <mxCell id="user" value="User&#xa;------------------&#xa;user_id (PK)&#xa;name&#xa;preference_type&#xa;health_goal"
+        style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="40" width="220" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- Recipe -->
+        <mxCell id="recipe" value="Recipe&#xa;------------------&#xa;recipe_id (PK)&#xa;recipe_name&#xa;cooking_time&#xa;difficulty_level&#xa;instructions"
+        style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="40" width="240" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- Ingredient -->
+        <mxCell id="ingredient" value="Ingredient&#xa;------------------&#xa;ingredient_id (PK)&#xa;ingredient_name"
+        style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="40" width="220" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Recipe_Ingredient -->
+        <mxCell id="ri" value="Recipe_Ingredient&#xa;------------------&#xa;recipe_id (PK, FK)&#xa;ingredient_id (PK, FK)"
+        style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="220" width="260" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Nutrition -->
+        <mxCell id="nutrition" value="Nutrition&#xa;------------------&#xa;nutrition_id (PK)&#xa;calories&#xa;protein&#xa;carbs&#xa;fats"
+        style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="240" width="240" height="150" as="geometry"/>
+        </mxCell>
+
+        <!-- Score -->
+        <mxCell id="score" value="Score&#xa;------------------&#xa;score_id (PK)&#xa;match_score&#xa;health_score&#xa;ease_score&#xa;final_score"
+        style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="260" width="240" height="150" as="geometry"/>
+        </mxCell>
+
+        <!-- Shopping List -->
+        <mxCell id="shopping" value="Shopping_List&#xa;------------------&#xa;list_id (PK)&#xa;user_id (FK)"
+        style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="240" width="220" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Missing Ingredients -->
+        <mxCell id="missing" value="Missing_Ingredients&#xa;------------------&#xa;list_id (PK, FK)&#xa;ingredient_id (PK, FK)"
+        style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="400" width="260" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== RELATIONSHIPS ===== -->
+
+        <!-- User - Shopping -->
+        <mxCell edge="1" source="user" target="shopping" parent="1" value="creates (1:N)">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Recipe - Nutrition -->
+        <mxCell edge="1" source="recipe" target="nutrition" parent="1" value="has (1:1)">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Recipe - Score -->
+        <mxCell edge="1" source="recipe" target="score" parent="1" value="has (1:1)">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Recipe - Recipe_Ingredient -->
+        <mxCell edge="1" source="recipe" target="ri" parent="1" value="(1:N)">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Ingredient - Recipe_Ingredient -->
+        <mxCell edge="1" source="ingredient" target="ri" parent="1" value="(1:N)">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Shopping - Missing -->
+        <mxCell edge="1" source="shopping" target="missing" parent="1" value="(1:N)">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Missing - Ingredient -->
+        <mxCell edge="1" source="missing" target="ingredient" parent="1" value="(N:1)">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

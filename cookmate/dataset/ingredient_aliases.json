@@ -1,0 +1,26 @@
+[
+    {
+        "alias": "tomatoes",
+        "normalized_name": "tomato"
+    },
+    {
+        "alias": "chilies",
+        "normalized_name": "chili"
+    },
+    {
+        "alias": "capsicum",
+        "normalized_name": "bell pepper"
+    },
+    {
+        "alias": "curd",
+        "normalized_name": "yogurt"
+    },
+    {
+        "alias": "scallion",
+        "normalized_name": "spring onion"
+    },
+    {
+        "alias": "coriander",
+        "normalized_name": "cilantro"
+    }
+]

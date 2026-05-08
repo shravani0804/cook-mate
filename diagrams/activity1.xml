@@ -1,0 +1,128 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Activity Diagram">
+    <mxGraphModel grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- USER LANE -->
+        <mxCell id="userLane" value="USER" style="swimlane;" vertex="1" parent="1">
+          <mxGeometry x="100" y="0" width="250" height="900" as="geometry"/>
+        </mxCell>
+
+        <!-- SYSTEM LANE -->
+        <mxCell id="systemLane" value="SYSTEM" style="swimlane;" vertex="1" parent="1">
+          <mxGeometry x="350" y="0" width="300" height="900" as="geometry"/>
+        </mxCell>
+
+        <!-- USER ELEMENTS -->
+        <mxCell id="start" value="Start" style="ellipse;" vertex="1" parent="userLane">
+          <mxGeometry x="75" y="40" width="100" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="u1" value="Enter Ingredients" style="rounded=1;" vertex="1" parent="userLane">
+          <mxGeometry x="50" y="120" width="150" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="u2" value="Select Preferences" style="rounded=1;" vertex="1" parent="userLane">
+          <mxGeometry x="50" y="200" width="150" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="u3" value="Click Get Recipes" style="rounded=1;" vertex="1" parent="userLane">
+          <mxGeometry x="50" y="280" width="150" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="u4" value="View Results" style="rounded=1;" vertex="1" parent="userLane">
+          <mxGeometry x="50" y="650" width="150" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="end" value="End" style="ellipse;" vertex="1" parent="userLane">
+          <mxGeometry x="75" y="750" width="100" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- SYSTEM ELEMENTS -->
+        <mxCell id="s1" value="Normalize Ingredients" style="rounded=1;" vertex="1" parent="systemLane">
+          <mxGeometry x="50" y="120" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="s2" value="Match Ingredients" style="rounded=1;" vertex="1" parent="systemLane">
+          <mxGeometry x="50" y="200" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="s3" value="Apply Filters" style="rounded=1;" vertex="1" parent="systemLane">
+          <mxGeometry x="50" y="280" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="s4" value="Calculate Scores" style="rounded=1;" vertex="1" parent="systemLane">
+          <mxGeometry x="50" y="360" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="s5" value="Rank Recipes" style="rounded=1;" vertex="1" parent="systemLane">
+          <mxGeometry x="50" y="440" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="decision" value="Recipes Found?" style="rhombus;" vertex="1" parent="systemLane">
+          <mxGeometry x="50" y="520" width="200" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="s6" value="Display Recipes" style="rounded=1;" vertex="1" parent="systemLane">
+          <mxGeometry x="20" y="620" width="150" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="s7" value="Show No Recipes" style="rounded=1;" vertex="1" parent="systemLane">
+          <mxGeometry x="200" y="620" width="150" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- EDGES -->
+        <mxCell id="e1" edge="1" parent="1" source="start" target="u1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" edge="1" parent="1" source="u1" target="s1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" edge="1" parent="1" source="s1" target="s2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" edge="1" parent="1" source="s2" target="s3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" edge="1" parent="1" source="s3" target="s4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e6" edge="1" parent="1" source="s4" target="s5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e7" edge="1" parent="1" source="s5" target="decision">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e8" edge="1" parent="1" source="decision" target="s6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e9" edge="1" parent="1" source="decision" target="s7">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e10" edge="1" parent="1" source="s6" target="u4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e11" edge="1" parent="1" source="u4" target="end">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e12" edge="1" parent="1" source="s7" target="end">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

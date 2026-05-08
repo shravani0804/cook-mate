@@ -1,0 +1,148 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Final Use Case Diagram">
+    <mxGraphModel grid="1" gridSize="10">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ACTORS -->
+        <mxCell id="user" value="End User" style="shape=umlActor;" vertex="1" parent="1">
+          <mxGeometry x="350" y="20" width="80" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="admin" value="Admin" style="shape=umlActor;" vertex="1" parent="1">
+          <mxGeometry x="750" y="450" width="80" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- SYSTEM BOUNDARY -->
+        <mxCell id="system" value="CookMate System" style="rounded=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="120" width="600" height="650" as="geometry"/>
+        </mxCell>
+
+        <!-- MAIN USE CASE -->
+        <mxCell id="main" value="Get Recipe Recommendation" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="200" y="40" width="250" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- USER USE CASES -->
+        <mxCell id="u1" value="Enter Ingredients" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="50" y="40" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="u2" value="Set Preferences" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="50" y="120" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="viewRecipes" value="View Recipes" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="200" y="450" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="missing" value="View Missing Ingredients" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="200" y="530" width="220" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- INCLUDE USE CASES -->
+        <mxCell id="inc1" value="Normalize Ingredients" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="100" y="150" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="inc2" value="Match Ingredients" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="350" y="150" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="inc3" value="Calculate Scores" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="100" y="230" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="inc4" value="Rank Recipes" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="350" y="230" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- EXTEND USE CASES -->
+        <mxCell id="ext1" value="Apply Filters" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="450" y="310" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ext2" value="View Nutrition" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="50" y="610" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ext3" value="View Scores" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="250" y="610" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ext4" value="Generate Shopping List" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="450" y="610" width="220" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ADMIN USE CASE -->
+        <mxCell id="adminUC" value="Manage Dataset" style="ellipse;" vertex="1" parent="system">
+          <mxGeometry x="350" y="700" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- CONNECTIONS -->
+
+        <!-- USER -->
+        <mxCell edge="1" parent="1" source="user" target="main">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="user" target="u1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="user" target="u2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="user" target="viewRecipes">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="user" target="missing">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ADMIN -->
+        <mxCell edge="1" parent="1" source="admin" target="adminUC">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- INCLUDE -->
+        <mxCell value="&lt;&lt;include&gt;&gt;" edge="1" parent="1" source="main" target="inc1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell value="&lt;&lt;include&gt;&gt;" edge="1" parent="1" source="main" target="inc2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell value="&lt;&lt;include&gt;&gt;" edge="1" parent="1" source="main" target="inc3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell value="&lt;&lt;include&gt;&gt;" edge="1" parent="1" source="main" target="inc4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- EXTEND -->
+        <mxCell value="&lt;&lt;extend&gt;&gt;" edge="1" parent="1" source="ext1" target="main">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell value="&lt;&lt;extend&gt;&gt;" edge="1" parent="1" source="ext2" target="viewRecipes">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell value="&lt;&lt;extend&gt;&gt;" edge="1" parent="1" source="ext3" target="viewRecipes">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell value="&lt;&lt;extend&gt;&gt;" edge="1" parent="1" source="ext4" target="viewRecipes">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
