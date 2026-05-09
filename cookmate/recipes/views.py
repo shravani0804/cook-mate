@@ -378,3 +378,28 @@ def add_to_shopping(request, recipe_id):
                 )
 
     return redirect('/')
+
+def recipe_detail(request, recipe_id):
+
+    recipe = get_object_or_404(
+        Recipe,
+        id=recipe_id
+    )
+
+    nutrition = Nutrition.objects.filter(
+        recipe=recipe
+    ).first()
+
+    return render(
+
+        request,
+
+        'recipe_detail.html',
+
+        {
+
+            'recipe': recipe,
+
+            'nutrition': nutrition
+        }
+    )

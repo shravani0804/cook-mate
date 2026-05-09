@@ -1,7 +1,6 @@
 import os
 import django
 import pandas as pd
-import ast
 import random
 
 os.environ.setdefault(
@@ -19,131 +18,140 @@ from recipes.models import (
 )
 
 # LOAD CSV
+
 df = pd.read_csv(
-    'dataset/foods_data.csv'
+    'dataset/clean_recipes.csv'
 )
 
 for index, row in df.iterrows():
 
     try:
 
-        recipe_name = str(row['name'])
+        recipe_name = str(
+            row['name']
+        ).strip()
 
-        summary = str(row['summary'])
+        instructions = str(
+            row['instructions']
+        ).strip()
 
-        ingredients_raw = row['ingredients']
+        ingredients_text = str(
+            row['ingredients']
+        ).lower()
 
-        nutrition_raw = row['nutritions']
+        calories = float(
+            row['calories']
+        )
 
-        times_raw = row['Times']
+        protein = float(
+            row['protein']
+        )
 
-        # COOKING TIME
-        cooking_time = 30
+        carbs = float(
+            row['carbs']
+        )
 
-        if 'CookTime' in str(times_raw):
+        fats = float(
+            row['fats']
+        )
 
-            import re
 
-            match = re.search(
-                r"CookTime':\s*'(\d+)",
-                str(times_raw)
-            )
+        cooking_time = int(
+            row['cooking_time']
+        )
 
-            if match:
-                cooking_time = int(match.group(1))
+        difficulty = str(
+            row['difficulty']
+        ).strip()
+
+        cuisine = str(
+            row['cuisine']
+        ).strip()
 
         # CREATE RECIPE
+
         recipe = Recipe.objects.create(
+
             name=recipe_name,
-            instructions=summary,
+
+            instructions=instructions,
+
             cooking_time=cooking_time,
-            difficulty=random.choice([
-                'Easy',
-                'Medium',
-                'Hard'
-            ]),
-            popularity_score=random.randint(50, 100)
+
+            difficulty=difficulty,
+
+            cuisine=cuisine,
+
+            popularity_score=random.randint(
+                50,
+                100
+            )
         )
 
         # INGREDIENTS
-        ingredients_list = ast.literal_eval(
-            ingredients_raw
-        )
 
-        for ingredient_name in ingredients_list:
+        ingredient_list = ingredients_text.split(',')
 
-            ingredient_obj, created = Ingredient.objects.get_or_create(
-                name=ingredient_name.lower().strip()
+        for ingredient_name in ingredient_list:
+
+            ingredient_name = (
+                ingredient_name.strip()
             )
 
-            recipe.ingredients.add(
-                ingredient_obj
-            )
+            if ingredient_name:
 
-        # NUTRITION VALUES
-        calories = 0
-        protein = 0
-        carbs = 0
-        fats = 0
+                ingredient_obj, created = (
+                    Ingredient.objects.get_or_create(
+                        name=ingredient_name
+                    )
+                )
 
-        nutrition_text = str(nutrition_raw)
+                recipe.ingredients.add(
+                    ingredient_obj
+                )
 
-        import re
-
-        calorie_match = re.search(
-            r"Calories':\s*'(\d+)",
-            nutrition_text
-        )
-
-        protein_match = re.search(
-            r"Protein':\s*'(\d+)",
-            nutrition_text
-        )
-
-        carb_match = re.search(
-            r"Carbohydrates':\s*'(\d+)",
-            nutrition_text
-        )
-
-        fat_match = re.search(
-            r"Fat':\s*'(\d+)",
-            nutrition_text
-        )
-
-        if calorie_match:
-            calories = float(calorie_match.group(1))
-
-        if protein_match:
-            protein = float(protein_match.group(1))
-
-        if carb_match:
-            carbs = float(carb_match.group(1))
-
-        if fat_match:
-            fats = float(fat_match.group(1))
+        # NUTRITION
 
         Nutrition.objects.create(
+
             recipe=recipe,
+
             calories=calories,
+
             protein=protein,
+
             carbs=carbs,
+
             fats=fats
         )
 
         # SCORE
+
         Score.objects.create(
+
             recipe=recipe,
+
             match_score=0,
-            health_score=random.uniform(5, 10),
-            ease_score=random.uniform(5, 10),
-            final_score=random.uniform(5, 10),
+
+            health_score=0,
+
+            ease_score=0,
+
+            final_score=0,
+
             popularity_score=recipe.popularity_score
         )
 
-        print(f"Imported: {recipe_name}")
+        print(
+            f"Imported: {recipe.name}"
+        )
 
     except Exception as e:
 
-        print(f"Error in row {index}: {e}")
+        print(
+            f"Error in row {index}: {e}"
+        )
 
-print("DATA IMPORT COMPLETED")
+print(
+    "DATASET IMPORT COMPLETED"
+)

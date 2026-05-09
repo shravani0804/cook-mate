@@ -639,12 +639,21 @@
             ({{ recommended_recipes|length }})
 
         </h2>
-
+        
+         
         <div class="recipe-grid">
 
             {% for item in recommended_recipes %}
 
+             
+     
             <div class="recipe-card">
+
+                    <a
+                     {% if item.recipe.id %}
+                        href="{% url 'recipe_detail' item.recipe.id %}"
+                    {% endif %}
+                    >
 
                 {% if item.recipe.image %}
 
@@ -654,14 +663,33 @@
                 >
 
                 {% endif %}
+            </a>
 
                 <div class="recipe-content">
 
                     <div class="recipe-title">
 
+                        <!---CLICKABLE TITLE--->
+
                         <h3>
+                            <a
+                            {% if item.recipe.id %}
+                                href="{% url 'recipe_detail' item.recipe.id %}"
+                            {% endif %}
+                            style="
+                                text-decoration:none;
+                                color:#ff5e62;
+                            "
+                        >
+
+
                             {{ item.recipe.name }}
+
+                          </a>  
                         </h3>
+                   
+
+                        <!-- FAVORITE BUTTON -->
 
                         <a
                             href="/favorite/{{ item.recipe.id }}/"
@@ -681,7 +709,7 @@
                         </a>
 
                     </div>
-
+                      <!-- META -->
                     <div class="meta">
 
                         ⏱ Cooking Time:
@@ -692,6 +720,11 @@
                         📌 Difficulty:
                         {{ item.recipe.difficulty }}
 
+                        <br>
+
+                        🍛 Cuisine:
+                        {{ item.recipe.cuisine }}
+
                     </div>
 
                     <!-- NUTRITION -->
@@ -700,28 +733,28 @@
 
                         <div class="nutri-card">
                             <h4>
-                                {{ item.recipe.nutrition.calories }}
+                                {{ item.recipe.nutrition.calories|default:"0" }}
                             </h4>
                             <span>Calories</span>
                         </div>
 
                         <div class="nutri-card">
                             <h4>
-                                {{ item.recipe.nutrition.protein }}g
+                                {{ item.recipe.nutrition.protein|default:"0" }}g
                             </h4>
                             <span>Protein</span>
                         </div>
 
                         <div class="nutri-card">
                             <h4>
-                                {{ item.recipe.nutrition.carbs }}g
+                                {{ item.recipe.nutrition.carbs|default:"0" }}g
                             </h4>
                             <span>Carbs</span>
                         </div>
 
                         <div class="nutri-card">
                             <h4>
-                                {{ item.recipe.nutrition.fats }}g
+                                {{ item.recipe.nutrition.fats|default:"0" }}g
                             </h4>
                             <span>Fats</span>
                         </div>
@@ -749,6 +782,10 @@
                         </div>
 
                     </div>
+                </div>  
+
+            </div>
+                    <!-- MATCHED INGREDIENTS -->
 
                     {% if item.matched %}
 
@@ -761,6 +798,8 @@
                     </div>
 
                     {% endif %}
+
+                    <!-- MISSING INGREDIENTS -->
 
                     {% if item.missing %}
 
@@ -805,6 +844,7 @@
                 </div>
 
             </div>
+            </a>
 
             {% endfor %}
 

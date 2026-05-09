@@ -38,4 +38,10 @@ path(
     views.add_to_shopping,
     name='add_to_shopping'
 ),
+
+path(
+    'recipe/<int:recipe_id>/',
+    views.recipe_detail,
+    name='recipe_detail'
+),
 ]

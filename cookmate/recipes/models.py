@@ -16,6 +16,10 @@ class Recipe(models.Model):
     instructions = models.TextField()
     cooking_time = models.IntegerField()
     difficulty = models.CharField(max_length=50)
+    cuisine = models.CharField(
+    max_length=100,
+    null=True,
+    blank=True)
     image = models.ImageField(upload_to='recipe_images/', null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     popularity_score = models.IntegerField(default=0)
@@ -41,6 +45,7 @@ class Score(models.Model):
     ease_score = models.FloatField()
     final_score = models.FloatField()
     popularity_score = models.IntegerField(default=0)
+   
 
 
 # Shopping List Model

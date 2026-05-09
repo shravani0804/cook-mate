@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ recipe.name }}</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+
+            width: 85%;
+            margin: 40px auto;
+        }
+
+        .recipe-box {
+
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .recipe-image {
+
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        h1 {
+
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .meta {
+
+            margin-top: 10px;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .section {
+
+            margin-top: 35px;
+        }
+
+        .section h2 {
+
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+
+        ul {
+
+            padding-left: 20px;
+        }
+
+        li {
+
+            margin-bottom: 8px;
+        }
+
+        .nutrition-grid {
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .nutrition-card {
+
+            background: #fff3f3;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .nutrition-card h3 {
+
+            margin: 0;
+            color: #ff6b6b;
+        }
+
+        .nutrition-card p {
+
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .instructions {
+
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .back-btn {
+
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 20px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .back-btn:hover {
+
+            background: #ff4f4f;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="recipe-box">
+
+            {% if recipe.image %}
+
+                <img
+                    src="{{ recipe.image.url }}"
+                    class="recipe-image"
+                >
+
+            {% endif %}
+
+            <h1>{{ recipe.name }}</h1>
+
+            <div class="meta">
+
+                {{ recipe.cuisine }}
+                •
+                {{ recipe.difficulty }}
+                •
+                {{ recipe.cooking_time }} mins
+
+            </div>
+
+            <div class="section">
+
+                <h2>Nutrition Information</h2>
+
+                {% if nutrition %}
+
+                    <div class="nutrition-grid">
+
+                        <div class="nutrition-card">
+
+                            <h3>Calories</h3>
+
+                            <p>{{ nutrition.calories }}</p>
+
+                        </div>
+
+                        <div class="nutrition-card">
+
+                            <h3>Protein</h3>
+
+                            <p>{{ nutrition.protein }} g</p>
+
+                        </div>
+
+                        <div class="nutrition-card">
+
+                            <h3>Carbs</h3>
+
+                            <p>{{ nutrition.carbs }} g</p>
+
+                        </div>
+
+                        <div class="nutrition-card">
+
+                            <h3>Fats</h3>
+
+                            <p>{{ nutrition.fats }} g</p>
+
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+            <div class="section">
+
+                <h2>Ingredients</h2>
+
+                <ul>
+
+                    {% for ingredient in recipe.ingredients.all %}
+
+                        <li>
+
+                            {{ ingredient.name }}
+
+                        </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+            <div class="section">
+
+                <h2>Instructions</h2>
+
+                <div class="instructions">
+
+                    {{ recipe.instructions }}
+
+                </div>
+
+            </div>
+
+            <a
+                href="/"
+                class="back-btn"
+            >
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

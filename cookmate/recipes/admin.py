@@ -6,7 +6,8 @@ from .models import (
     Score,
     ShoppingList,
     SearchHistory,
-    IngredientAlias
+    IngredientAlias,
+    Favorite,
 )
 
 @admin.register(Recipe)
@@ -19,7 +20,7 @@ admin.site.register(Nutrition)
 admin.site.register(Score)
 admin.site.register(ShoppingList)
 admin.site.register(IngredientAlias)
-
+admin.site.register(Favorite)
 
 @admin.register(SearchHistory)
 class SearchHistoryAdmin(admin.ModelAdmin):
