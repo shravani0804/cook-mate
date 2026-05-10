@@ -5,124 +5,337 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>{{ recipe.name }}</title>
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
     <style>
 
-        body {
+        *{
 
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 0;
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
         }
 
-        .container {
+        body{
 
-            width: 85%;
-            margin: 40px auto;
+            font-family:'Poppins',sans-serif;
+
+            background:
+            linear-gradient(
+                rgba(4,8,20,0.85),
+                rgba(4,8,20,0.9)
+            ),
+            url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1800&auto=format&fit=crop');
+
+            background-size:cover;
+            background-position:center;
+            background-attachment:fixed;
+
+            color:white;
+
+            min-height:100vh;
+
+            padding:50px 0;
         }
 
-        .recipe-box {
+        .container{
 
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width:90%;
+
+            max-width:1400px;
+
+            margin:auto;
         }
 
-        .recipe-image {
+        .recipe-box{
 
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 15px;
+            background:
+            rgba(15,23,42,0.82);
+
+            backdrop-filter:blur(16px);
+
+            border-radius:35px;
+
+            overflow:hidden;
+
+            border:1px solid rgba(255,255,255,0.08);
+
+            box-shadow:
+            0 25px 50px rgba(0,0,0,0.35);
+
+            animation:fadeUp 0.8s ease;
         }
 
-        h1 {
+        .recipe-image{
 
-            margin-top: 20px;
-            color: #333;
+            width:100%;
+
+            height:520px;
+
+            object-fit:cover;
+
+            transition:0.5s ease;
         }
 
-        .meta {
+        .recipe-image:hover{
 
-            margin-top: 10px;
-            color: #666;
-            font-size: 18px;
+            transform:scale(1.02);
         }
 
-        .section {
+        .recipe-content{
 
-            margin-top: 35px;
+            padding:45px;
         }
 
-        .section h2 {
+        h1{
 
-            color: #ff6b6b;
-            margin-bottom: 15px;
+            font-size:58px;
+
+            margin-bottom:18px;
+
+            color:white;
         }
 
-        ul {
+        .meta{
 
-            padding-left: 20px;
+            display:flex;
+
+            gap:18px;
+
+            flex-wrap:wrap;
+
+            margin-bottom:35px;
         }
 
-        li {
+        .meta span{
 
-            margin-bottom: 8px;
+            background:
+            rgba(255,255,255,0.08);
+
+            padding:10px 18px;
+
+            border-radius:30px;
+
+            font-size:15px;
+
+            color:#d1d5db;
+
+            border:1px solid rgba(255,255,255,0.05);
         }
 
-        .nutrition-grid {
+        .section{
 
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            margin-top:45px;
         }
 
-        .nutrition-card {
+        .section h2{
 
-            background: #fff3f3;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
+            font-size:34px;
+
+            margin-bottom:22px;
+
+            color:#ff8c42;
         }
 
-        .nutrition-card h3 {
+        .nutrition-grid{
 
-            margin: 0;
-            color: #ff6b6b;
+            display:grid;
+
+            grid-template-columns:
+            repeat(auto-fit,minmax(220px,1fr));
+
+            gap:22px;
         }
 
-        .nutrition-card p {
+        .nutrition-card{
 
-            font-size: 18px;
-            font-weight: bold;
+            background:
+            rgba(255,255,255,0.05);
+
+            border-radius:22px;
+
+            padding:30px;
+
+            text-align:center;
+
+            border:1px solid rgba(255,255,255,0.05);
+
+            transition:0.35s ease;
         }
 
-        .instructions {
+        .nutrition-card:hover{
 
-            line-height: 1.8;
-            color: #444;
+            transform:
+            translateY(-6px);
+
+            background:
+            rgba(255,255,255,0.08);
+
+            box-shadow:
+            0 15px 30px rgba(0,0,0,0.25);
         }
 
-        .back-btn {
+        .nutrition-card h3{
 
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 20px;
-            background: #ff6b6b;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
+            color:#ff8c42;
+
+            margin-bottom:15px;
+
+            font-size:22px;
         }
 
-        .back-btn:hover {
+        .nutrition-card p{
 
-            background: #ff4f4f;
+            font-size:30px;
+
+            font-weight:700;
+
+            color:white;
+        }
+
+        .nutrition-card small{
+
+            color:#d1d5db;
+        }
+
+        .ingredient-list{
+
+            display:flex;
+
+            flex-wrap:wrap;
+
+            gap:15px;
+        }
+
+        .ingredient-item{
+
+            background:
+            linear-gradient(
+                135deg,
+                #ff8c42,
+                #ff5e62
+            );
+
+            padding:12px 18px;
+
+            border-radius:30px;
+
+            font-size:15px;
+
+            font-weight:500;
+
+            transition:0.3s ease;
+        }
+
+        .ingredient-item:hover{
+
+            transform:translateY(-3px);
+        }
+
+        .instructions{
+
+            background:
+            rgba(255,255,255,0.04);
+
+            padding:35px;
+
+            border-radius:25px;
+
+            line-height:2;
+
+            color:#e5e7eb;
+
+            font-size:17px;
+
+            border:1px solid rgba(255,255,255,0.05);
+        }
+
+        .back-btn{
+
+            display:inline-block;
+
+            margin-top:40px;
+
+            padding:15px 28px;
+
+            border-radius:16px;
+
+            background:
+            linear-gradient(
+                135deg,
+                #ff8c42,
+                #ff5e62
+            );
+
+            color:white;
+
+            text-decoration:none;
+
+            font-weight:600;
+
+            transition:0.35s ease;
+
+            box-shadow:
+            0 15px 30px rgba(255,94,98,0.25);
+        }
+
+        .back-btn:hover{
+
+            transform:
+            translateY(-4px);
+
+            box-shadow:
+            0 22px 40px rgba(255,94,98,0.35);
+        }
+
+        @keyframes fadeUp{
+
+            from{
+
+                opacity:0;
+
+                transform:translateY(30px);
+            }
+
+            to{
+
+                opacity:1;
+
+                transform:translateY(0);
+            }
+        }
+
+        @media(max-width:768px){
+
+            .recipe-content{
+
+                padding:28px;
+            }
+
+            h1{
+
+                font-size:38px;
+            }
+
+            .recipe-image{
+
+                height:300px;
+            }
+
+            .section h2{
+
+                font-size:28px;
+            }
         }
 
     </style>
@@ -144,23 +357,47 @@
 
             {% endif %}
 
-            <h1>{{ recipe.name }}</h1>
+            <div class="recipe-content">
 
-            <div class="meta">
+                <h1>
 
-                {{ recipe.cuisine }}
-                •
-                {{ recipe.difficulty }}
-                •
-                {{ recipe.cooking_time }} mins
+                    {{ recipe.name }}
 
-            </div>
+                </h1>
 
-            <div class="section">
+                <div class="meta">
 
-                <h2>Nutrition Information</h2>
+                    <span>
 
-                {% if nutrition %}
+                        🌍 {{ recipe.cuisine }}
+
+                    </span>
+
+                    <span>
+
+                        ⚡ {{ recipe.difficulty }}
+
+                    </span>
+
+                    <span>
+
+                        ⏱ {{ recipe.cooking_time }} mins
+
+                    </span>
+
+                </div>
+
+                <!-- NUTRITION -->
+
+                <div class="section">
+
+                    <h2>
+
+                        Nutrition Information
+
+                    </h2>
+
+                    {% if nutrition %}
 
                     <div class="nutrition-grid">
 
@@ -168,7 +405,13 @@
 
                             <h3>Calories</h3>
 
-                            <p>{{ nutrition.calories }}</p>
+                            <p>
+
+                                {{ nutrition.calories }}
+
+                            </p>
+
+                            <small>kcal</small>
 
                         </div>
 
@@ -176,7 +419,13 @@
 
                             <h3>Protein</h3>
 
-                            <p>{{ nutrition.protein }} g</p>
+                            <p>
+
+                                {{ nutrition.protein }}
+
+                            </p>
+
+                            <small>grams</small>
 
                         </div>
 
@@ -184,7 +433,13 @@
 
                             <h3>Carbs</h3>
 
-                            <p>{{ nutrition.carbs }} g</p>
+                            <p>
+
+                                {{ nutrition.carbs }}
+
+                            </p>
+
+                            <small>grams</small>
 
                         </div>
 
@@ -192,54 +447,76 @@
 
                             <h3>Fats</h3>
 
-                            <p>{{ nutrition.fats }} g</p>
+                            <p>
+
+                                {{ nutrition.fats }}
+
+                            </p>
+
+                            <small>grams</small>
 
                         </div>
 
                     </div>
 
-                {% endif %}
-
-            </div>
-
-            <div class="section">
-
-                <h2>Ingredients</h2>
-
-                <ul>
-
-                    {% for ingredient in recipe.ingredients.all %}
-
-                        <li>
-
-                            {{ ingredient.name }}
-
-                        </li>
-
-                    {% endfor %}
-
-                </ul>
-
-            </div>
-
-            <div class="section">
-
-                <h2>Instructions</h2>
-
-                <div class="instructions">
-
-                    {{ recipe.instructions }}
+                    {% endif %}
 
                 </div>
 
-            </div>
+                <!-- INGREDIENTS -->
 
-            <a
-                href="/"
-                class="back-btn"
-            >
-                ← Back to Home
-            </a>
+                <div class="section">
+
+                    <h2>
+
+                        Ingredients
+
+                    </h2>
+
+                    <div class="ingredient-list">
+
+                        {% for ingredient in recipe.ingredients.all %}
+
+                            <div class="ingredient-item">
+
+                                {{ ingredient.name }}
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                <!-- INSTRUCTIONS -->
+
+                <div class="section">
+
+                    <h2>
+
+                        Instructions
+
+                    </h2>
+
+                    <div class="instructions">
+
+                        {{ recipe.instructions }}
+
+                    </div>
+
+                </div>
+
+                <a
+                    href="/"
+                    class="back-btn"
+                >
+
+                    ← Back To Home
+
+                </a>
+
+            </div>
 
         </div>
 

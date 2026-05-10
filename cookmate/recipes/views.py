@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 from .models import (
@@ -32,6 +33,54 @@ def signup(request):
     return render(request, 'registration/signup.html', {
         'form': form
     })
+
+@login_required
+def role_redirect(request):
+
+    if request.user.is_staff:
+
+        return redirect(
+            'admin_dashboard'
+        )
+
+    return redirect(
+        'home'
+    )
+
+@login_required
+def admin_dashboard(request):
+
+    if not request.user.is_staff:
+
+        return redirect('home')
+
+    total_recipes = Recipe.objects.count()
+
+    total_users = User.objects.count()
+
+    total_favorites = Favorite.objects.count()
+
+    recent_recipes = Recipe.objects.order_by(
+        '-id'
+    )[:5]
+
+    return render(
+
+        request,
+
+        'admin_dashboard.html',
+
+        {
+
+            'total_recipes': total_recipes,
+
+            'total_users': total_users,
+
+            'total_favorites': total_favorites,
+
+            'recent_recipes': recent_recipes
+        }
+    )
 
 
 def home(request):

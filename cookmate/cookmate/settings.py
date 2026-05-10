@@ -55,7 +55,7 @@ ROOT_URLCONF = 'cookmate.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,5 +118,5 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/redirect/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'

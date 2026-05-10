@@ -1,40 +1,688 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-    <title>Login</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CookMate Login</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
 
     <style>
 
-        body {
-            font-family: Arial;
-            background-color: #f4f6f9;
-            padding: 50px;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
         }
 
-        .box {
-            width: 400px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
+        body{
+
+            font-family:'Poppins',sans-serif;
+
+            width:100%;
+            min-height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            overflow:hidden;
+
+            background:
+            linear-gradient(
+                135deg,
+                #050816,
+                #0b1120
+            );
+
+            position:relative;
         }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            margin-bottom: 15px;
+        /* BACKGROUND */
+
+        body::before{
+
+            content:'';
+
+            position:absolute;
+
+            inset:0;
+            background:
+            
+
+
+            linear-gradient(
+                rgba(0,0,0,0.35),
+                rgba(0,0,0,0.35)
+            ),
+            url('https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1800&auto=format&fit=crop');
+
+            background-size:cover;
+            background-position:center;
+            background-repeat:no-repeat;
+
+            z-index:0;
         }
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #ff5e62;
-            color: white;
-            border: none;
-            border-radius: 8px;
+        /* MAIN CONTAINER */
+
+        .main-container{
+
+            position:relative;
+
+            z-index:2;
+
+            width:1300px;
+            height:760px;
+
+            border-radius:35px;
+
+            overflow:hidden;
+
+            display:flex;
+
+            background:
+            linear-gradient(
+                135deg,
+                rgba(10,15,28,0.98),
+                rgba(15,23,42,0.98)
+            );
+
+            box-shadow:
+            0 20px 25px rgba(241, 239, 239, 0.55);
+
+            border:1px solid rgba(255,255,255,0.06);
+
+            animation:fadeUp 1s ease;
+        }
+
+        /* LEFT SECTION */
+
+        .left-section{
+
+            flex:1;
+
+            position:relative;
+
+            overflow:hidden;
+        }
+
+        .food-image{
+
+            width:100%;
+            height:100%;
+
+            object-fit:cover;
+
+            transition:0.6s ease;
+        }
+
+        .left-section:hover .food-image{
+
+            transform:scale(1.05);
+        }
+
+        .left-overlay{
+
+            position:absolute;
+
+            inset:0;
+
+            background:
+            linear-gradient(
+                to top,
+                rgba(0,0,0,0.9),
+                rgba(0,0,0,0.2)
+            );
+
+            padding:55px;
+
+            display:flex;
+
+            flex-direction:column;
+
+            justify-content:space-between;
+        }
+
+        /* LOGO */
+
+        .logo{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:12px;
+
+            color:white;
+
+            font-size:42px;
+
+            font-weight:700;
+        }
+
+        .logo span{
+
+            color:#ff8c42;
+        }
+
+        .logo i{
+
+            color:#ff8c42;
+        }
+
+        /* HERO TEXT */
+
+        .hero-content{
+
+            color:white;
+
+            max-width:520px;
+        }
+
+        .hero-content h1{
+
+            font-size:60px;
+
+            line-height:1.18;
+
+            margin-bottom:25px;
+
+            font-weight:700;
+        }
+
+        .hero-content p{
+
+            font-size:18px;
+
+            line-height:1.8;
+
+            color:#f1f1f1;
+        }
+
+        /* TAG */
+
+        .tag-box{
+
+            margin-top:35px;
+
+            display:inline-flex;
+
+            align-items:center;
+
+            gap:14px;
+
+            background:rgba(0,0,0,0.45);
+
+            backdrop-filter:blur(14px);
+
+            border:1px solid rgba(255,255,255,0.08);
+
+            padding:18px 24px;
+
+            border-radius:22px;
+
+            transition:0.35s ease;
+        }
+
+        .tag-box:hover{
+
+            transform:translateY(-4px);
+
+            background:rgba(0,0,0,0.58);
+        }
+
+        .tag-box i{
+
+            color:#ff8c42;
+
+            font-size:22px;
+        }
+
+        .tag-text h4{
+
+            color:#ff8c42;
+
+            margin-bottom:5px;
+
+            font-size:18px;
+        }
+
+        .tag-text p{
+
+            font-size:14px;
+
+            color:#f5f5f5;
+        }
+
+        /* FOOTER */
+
+        .left-footer{
+
+            color:#d1d5db;
+
+            font-size:13px;
+        }
+
+        /* RIGHT SECTION */
+
+        .right-section{
+
+            width:480px;
+
+            display:flex;
+
+            justify-content:center;
+            align-items:center;
+
+            position:relative;
+
+            padding:45px;
+        }
+
+        /* LOGIN CARD */
+
+        .login-card{
+
+            width:100%;
+
+            background:
+            linear-gradient(
+                180deg,
+                rgba(20,25,40,0.88),
+                rgba(15,23,42,0.92)
+            );
+
+            backdrop-filter:blur(20px);
+
+            border-radius:28px;
+
+            padding:45px;
+
+            border:1px solid rgba(255,255,255,0.08);
+
+            box-shadow:
+            0 25px 40px rgba(0,0,0,0.4);
+
+            transition:0.4s ease;
+        }
+
+        .login-card:hover{
+
+            transform:translateY(-5px);
+
+            box-shadow:
+            0 35px 60px rgba(0,0,0,0.5);
+        }
+
+        /* TOP ICON */
+
+        .top-icon{
+
+            position:absolute;
+
+            top:28px;
+            right:28px;
+
+            width:55px;
+            height:55px;
+
+            border-radius:18px;
+
+            display:flex;
+
+            justify-content:center;
+            align-items:center;
+
+            background:rgba(255,140,66,0.1);
+
+            border:1px solid rgba(255,140,66,0.25);
+
+            color:#ff8c42;
+
+            font-size:22px;
+        }
+
+        /* TITLES */
+
+        .login-title{
+
+            color:white;
+
+            font-size:40px;
+
+            font-weight:700;
+
+            margin-bottom:10px;
+        }
+
+        .login-subtitle{
+
+            color:#cbd5e1;
+
+            margin-bottom:40px;
+
+            font-size:12px;
+        }
+
+        /* INPUTS */
+
+        .input-group{
+
+            margin-bottom:28px;
+        }
+
+        .input-group label{
+
+            display:block;
+
+            color:#f1f1f1;
+
+            margin-bottom:12px;
+
+            font-size:15px;
+        }
+
+        .input-box{
+
+            position:relative;
+        }
+
+        .input-box i{
+
+            position:absolute;
+
+            top:50%;
+            left:18px;
+
+            transform:translateY(-50%);
+
+            color:#94a3b8;
+
+            transition:0.3s;
+        }
+
+        .input-box input{
+
+            width:100%;
+
+            padding:17px 18px 17px 50px;
+
+            border-radius:16px;
+
+            border:1px solid rgba(255,255,255,0.08);
+
+            background:rgba(255,255,255,0.03);
+
+            color:white;
+
+            font-size:15px;
+
+            outline:none;
+
+            transition:0.35s ease;
+        }
+
+        .input-box input:focus{
+
+            border:1px solid #ff8c42;
+
+            background:rgba(255,255,255,0.05);
+
+            transform:translateY(-2px);
+        }
+
+        .input-box input:focus + i{
+
+            color:#ff8c42;
+        }
+
+        /* OPTIONS */
+
+        .options{
+
+            display:flex;
+
+            justify-content:space-between;
+            align-items:center;
+
+            margin-bottom:30px;
+
+            color:#d1d5db;
+
+            font-size:12px;
+        }
+
+        .forgot{
+
+            color:#ff8c42;
+
+            text-decoration:none;
+
+            transition:0.3s;
+        }
+
+        .forgot:hover{
+
+            opacity:0.8;
+        }
+
+        /* LOGIN BUTTON */
+
+        .login-btn{
+
+            width:100%;
+
+            padding:18px;
+
+            border:none;
+
+            border-radius:16px;
+
+            background:
+            linear-gradient(
+                135deg,
+                #ff8c42,
+                #ff5e62
+            );
+
+            color:white;
+
+            font-size:18px;
+
+            font-weight:600;
+
+            cursor:pointer;
+
+            transition:0.35s ease;
+
+            display:flex;
+
+            justify-content:center;
+            align-items:center;
+
+            gap:14px;
+
+            box-shadow:
+            0 12px 25px rgba(255,94,98,0.25);
+        }
+
+        .login-btn:hover{
+
+            transform:translateY(-4px);
+
+            box-shadow:
+            0 18px 35px rgba(255,94,98,0.38);
+        }
+
+        /* DIVIDER */
+
+        .divider{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:15px;
+
+            margin:28px 0;
+
+            color:#cbd5e1;
+        }
+
+        .divider::before,
+        .divider::after{
+
+            content:'';
+
+            flex:1;
+
+            height:1px;
+
+            background:rgba(255,255,255,0.08);
+        }
+
+        /* SIGNUP */
+
+        .signup{
+
+            text-align:center;
+
+            color:#d1d5db;
+
+            margin-bottom:30px;
+        }
+
+        .signup a{
+
+            color:#ff8c42;
+
+            text-decoration:none;
+
+            font-weight:600;
+
+            margin-left:6px;
+        }
+
+
+
+        /* BOTTOM TAGS */
+
+        .bottom-tags{
+
+            position:absolute;
+
+            bottom:22px;
+            right:40px;
+
+            display:flex;
+
+            gap:25px;
+
+            color:#94a3b8;
+
+            font-size:14px;
+        }
+
+        .bottom-tags div{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:8px;
+        }
+
+        /* ANIMATION */
+
+        @keyframes fadeUp{
+
+            from{
+
+                opacity:0;
+
+                transform:translateY(40px);
+            }
+
+            to{
+
+                opacity:1;
+
+                transform:translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:1200px){
+
+            .main-container{
+
+                width:95%;
+            }
+
+            .hero-content h1{
+
+                font-size:46px;
+            }
+        }
+
+        @media(max-width:950px){
+
+            .main-container{
+
+                flex-direction:column;
+
+                height:auto;
+            }
+
+            .right-section{
+
+                width:100%;
+            }
+
+            .left-section{
+
+                height:500px;
+            }
+        }
+
+        @media(max-width:700px){
+
+            .hero-content h1{
+
+                font-size:36px;
+            }
+
+            .left-overlay{
+
+                padding:35px;
+            }
+
+            .right-section{
+
+                padding:20px;
+            }
+
+            .login-card{
+
+                padding:35px 25px;
+            }
         }
 
     </style>
@@ -43,29 +691,228 @@
 
 <body>
 
-<div class="box">
+    <div class="main-container">
 
-    <h2>Login</h2>
+        <!-- LEFT -->
 
-    <form method="POST">
+        <div class="left-section">
 
-        {% csrf_token %}
+            <img
+                class="food-image"
+                src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=1400&auto=format&fit=crop"
+                alt="Food"
+            >
 
-        {{ form.as_p }}
+            <div class="left-overlay">
 
-        <button type="submit">
-            Login
-        </button>
+                <div class="logo">
 
-    </form>
+                    <i class="fa-solid fa-cheese"></i>
 
-    <br>
+                    Cook<span>Mate</span>
 
-    <a href="/signup/">
-        Create new account
-    </a>
+                </div>
 
-</div>
+                <div class="hero-content">
+
+                    <h1>
+
+                        AI-Powered Recipe
+                        Recommendation
+                        & Nutrition Analysis
+
+                    </h1>
+
+                    <p>
+
+                        Smart Recipes • Personalized Nutrition
+                        • Healthy Living
+
+                    </p>
+
+                    <div class="tag-box">
+
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+
+                        <div class="tag-text">
+
+                            <h4>
+
+                                Discover. Cook. Nourish.
+
+                            </h4>
+
+                            <p>
+
+                                Your intelligent cooking companion.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="left-footer">
+
+                    © 2026 CookMate. All rights reserved.
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="right-section">
+
+            <div class="login-card">
+
+                <div class="top-icon">
+
+                    <i class="fa-solid fa-cheese"></i>
+
+                </div>
+
+                <div class="login-title">
+
+                    Welcome Back!
+
+                </div>
+
+                <div class="login-subtitle">
+
+                    Login to continue your cooking journey
+
+                </div>
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Username
+
+                        </label>
+
+                        <div class="input-box">
+
+                            {{ form.username }}
+
+                            <i class="fa-regular fa-user"></i>
+
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Password
+
+                        </label>
+
+                        <div class="input-box">
+
+                            {{ form.password }}
+
+                            <i class="fa-solid fa-lock"></i>
+
+                        </div>
+
+                    </div>
+
+                    <div class="options">
+
+                        <div>
+
+                            <input type="checkbox">
+
+                            Remember me
+
+                        </div>
+
+                        <a href="#" class="forgot">
+
+                            Forgot Password?
+
+                        </a>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="login-btn"
+                    >
+
+                        LOGIN
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+                <div class="divider">
+
+                    OR
+
+                </div>
+
+                <div class="signup">
+
+                    Don't have an account?
+
+                    <a href="/signup/">
+
+                        Create Account
+
+                    </a>
+
+                </div>
+
+             
+
+            </div>
+
+            <div class="bottom-tags">
+
+                <div>
+
+                    <i class="fa-solid fa-shield"></i>
+
+                    Secure
+
+                </div>
+
+                <div>
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    Private
+
+                </div>
+
+                <div>
+
+                    <i class="fa-regular fa-heart"></i>
+
+                    Healthy
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
+
 </html>

@@ -1,56 +1,312 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Add Recipe</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
     <style>
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
-            padding: 40px;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
         }
 
-        .container {
-            width: 600px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+        body{
+
+            font-family:'Poppins',sans-serif;
+
+            min-height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            padding:40px;
+
+            background:
+            linear-gradient(
+                rgba(4,8,20,0.82),
+                rgba(4,8,20,0.9)
+            ),
+            url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1800&auto=format&fit=crop');
+
+            background-size:cover;
+            background-position:center;
+            background-attachment:fixed;
         }
 
-        h1 {
-            margin-bottom: 20px;
-            color: #ff5e62;
-            text-align: center;
+        .container{
+
+            width:100%;
+
+            max-width:850px;
+
+            background:
+            rgba(15,23,42,0.86);
+
+            backdrop-filter:blur(16px);
+
+            border-radius:35px;
+
+            padding:45px;
+
+            border:1px solid rgba(255,255,255,0.08);
+
+            box-shadow:
+            0 25px 50px rgba(0,0,0,0.35);
+
+            animation:fadeUp 0.8s ease;
+        }
+
+        /* TITLE */
+
+        h1{
+
+            text-align:center;
+
+            color:white;
+
+            font-size:48px;
+
+            margin-bottom:12px;
+        }
+
+        .subtitle{
+
+            text-align:center;
+
+            color:#d1d5db;
+
+            margin-bottom:40px;
+
+            font-size:18px;
+        }
+
+        /* FORM */
+
+        form{
+
+            display:flex;
+
+            flex-direction:column;
+        }
+
+        label{
+
+            color:white;
+
+            margin-bottom:10px;
+
+            font-weight:500;
+
+            font-size:16px;
         }
 
         input,
         textarea,
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
+        select{
+
+            width:100%;
+
+            padding:16px;
+
+            margin-bottom:25px;
+
+            border-radius:18px;
+
+            border:
+            1px solid rgba(255,255,255,0.08);
+
+            background:
+            rgba(255,255,255,0.05);
+
+            color:white;
+
+            font-size:15px;
+
+            transition:0.35s ease;
+
+            outline:none;
         }
 
-        button {
-            background-color: #ff5e62;
-            color: white;
-            border: none;
-            padding: 12px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
+        input:focus,
+        textarea:focus,
+        select:focus{
+
+            border:
+            1px solid #ff8c42;
+
+            box-shadow:
+            0 0 0 4px rgba(255,140,66,0.12);
         }
 
-        button:hover {
-            background-color: #e14a4f;
+        textarea{
+
+            min-height:130px;
+
+            resize:none;
+        }
+
+        /* PLACEHOLDER */
+
+        input::placeholder,
+        textarea::placeholder{
+
+            color:#94a3b8;
+        }
+
+        /* FILE INPUT */
+
+        input[type="file"]{
+
+            padding:14px;
+
+            color:#d1d5db;
+        }
+
+        /* BUTTON */
+
+        button{
+
+            background:
+            linear-gradient(
+                135deg,
+                #ff8c42,
+                #ff5e62
+            );
+
+            color:white;
+
+            border:none;
+
+            padding:18px;
+
+            border-radius:18px;
+
+            font-size:17px;
+
+            font-weight:600;
+
+            cursor:pointer;
+
+            transition:0.35s ease;
+
+            margin-top:10px;
+
+            box-shadow:
+            0 15px 30px rgba(255,94,98,0.25);
+        }
+
+        button:hover{
+
+            transform:
+            translateY(-4px);
+
+            box-shadow:
+            0 22px 40px rgba(255,94,98,0.35);
+        }
+
+        /* BACK BUTTON */
+
+        .back-btn{
+
+            display:inline-block;
+
+            margin-bottom:30px;
+
+            color:white;
+
+            text-decoration:none;
+
+            background:
+            rgba(255,255,255,0.08);
+
+            padding:12px 20px;
+
+            border-radius:14px;
+
+            transition:0.3s ease;
+
+            border:
+            1px solid rgba(255,255,255,0.08);
+        }
+
+        .back-btn:hover{
+
+            background:
+            rgba(255,255,255,0.12);
+
+            transform:
+            translateY(-2px);
+        }
+
+        /* DJANGO FORM FIX */
+
+        p{
+
+            margin-bottom:10px;
+        }
+
+        p label{
+
+            display:block;
+
+            margin-bottom:10px;
+        }
+
+        /* ANIMATION */
+
+        @keyframes fadeUp{
+
+            from{
+
+                opacity:0;
+
+                transform:translateY(30px);
+            }
+
+            to{
+
+                opacity:1;
+
+                transform:translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            body{
+
+                padding:20px;
+            }
+
+            .container{
+
+                padding:30px;
+            }
+
+            h1{
+
+                font-size:38px;
+            }
         }
 
     </style>
@@ -61,16 +317,40 @@
 
 <div class="container">
 
-    <h1>➕ Add Recipe</h1>
+    <a
+        href="/"
+        class="back-btn"
+    >
 
-    <form method="POST" enctype="multipart/form-data">
+        ← Back To Home
+
+    </a>
+
+    <h1>
+
+        ➕ Add Recipe
+
+    </h1>
+
+    <p class="subtitle">
+
+        Share your delicious recipe with CookMate
+
+    </p>
+
+    <form
+        method="POST"
+        enctype="multipart/form-data"
+    >
 
         {% csrf_token %}
 
         {{ form.as_p }}
 
         <label>
+
             Ingredients
+
         </label>
 
         <input
@@ -81,7 +361,9 @@
         >
 
         <button type="submit">
+
             Save Recipe
+
         </button>
 
     </form>
@@ -89,4 +371,5 @@
 </div>
 
 </body>
+
 </html>

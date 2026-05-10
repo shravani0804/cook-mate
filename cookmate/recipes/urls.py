@@ -44,4 +44,16 @@ path(
     views.recipe_detail,
     name='recipe_detail'
 ),
+
+path(
+    'redirect/',
+    views.role_redirect,
+    name='role_redirect'
+),
+
+path(
+    'admin-dashboard/',
+    views.admin_dashboard,
+    name='admin_dashboard'
+),
 ]

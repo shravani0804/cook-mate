@@ -1,0 +1,288 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+CookMate Admin
+{% endblock %}
+
+{% block branding %}
+
+<h1 id="site-name">
+
+    🍳 CookMate Admin Dashboard
+
+</h1>
+
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block extrastyle %}
+
+<style>
+
+    /* BACKGROUND */
+
+    body{
+
+        background:
+        linear-gradient(
+            rgba(4,8,20,0.9),
+            rgba(4,8,20,0.92)
+        ),
+        url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1800&auto=format&fit=crop');
+
+        background-size:cover;
+
+        background-attachment:fixed;
+
+        font-family:'Poppins',sans-serif;
+    }
+
+    /* HEADER */
+
+    #header{
+
+        background:
+        linear-gradient(
+            135deg,
+            #ff8c42,
+            #ff5e62
+        );
+
+        color:white;
+
+        box-shadow:
+        0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    #site-name a{
+
+        color:white;
+
+        font-size:28px;
+
+        font-weight:700;
+    }
+
+    /* MODULES */
+
+    .module{
+
+        background:
+        rgba(15,23,42,0.88);
+
+        backdrop-filter:blur(14px);
+
+        border-radius:20px;
+
+        overflow:hidden;
+
+        border:1px solid rgba(255,255,255,0.06);
+
+        box-shadow:
+        0 15px 35px rgba(0,0,0,0.3);
+
+        margin-bottom:30px;
+
+        transition:0.35s ease;
+    }
+
+    .module:hover{
+
+        transform:
+        translateY(-4px);
+    }
+
+    .module h2,
+    .module caption,
+    .inline-group h2{
+
+        background:
+        linear-gradient(
+            135deg,
+            #ff8c42,
+            #ff5e62
+        ) !important;
+
+        color:white !important;
+
+        padding:14px !important;
+
+        font-size:18px !important;
+    }
+
+    /* TABLES */
+
+    #content{
+
+        padding:30px;
+    }
+
+    table{
+
+        width:100%;
+    }
+
+    td,
+    th{
+
+        padding:14px !important;
+
+        border-bottom:
+        1px solid rgba(255,255,255,0.06);
+    }
+
+    th{
+
+        color:white !important;
+    }
+
+    td{
+
+        color:#d1d5db;
+    }
+
+    /* LINKS */
+
+    a{
+
+        color:#ff8c42 !important;
+
+        transition:0.3s ease;
+    }
+
+    a:hover{
+
+        color:#ffb36b !important;
+    }
+
+    /* BUTTONS */
+
+    .button,
+    input[type=submit],
+    input[type=button],
+    .submit-row input,
+    a.button{
+
+        background:
+        linear-gradient(
+            135deg,
+            #ff8c42,
+            #ff5e62
+        ) !important;
+
+        border:none !important;
+
+        border-radius:12px !important;
+
+        padding:12px 18px !important;
+
+        color:white !important;
+
+        font-weight:600 !important;
+
+        transition:0.3s ease;
+    }
+
+    .button:hover,
+    input[type=submit]:hover,
+    input[type=button]:hover{
+
+        transform:
+        translateY(-2px);
+
+        box-shadow:
+        0 10px 20px rgba(255,94,98,0.3);
+    }
+
+    /* INPUTS */
+
+    input,
+    textarea,
+    select{
+
+        background:
+        rgba(255,255,255,0.06) !important;
+
+        border:
+        1px solid rgba(255,255,255,0.08) !important;
+
+        color:white !important;
+
+        border-radius:12px !important;
+
+        padding:10px !important;
+    }
+
+    /* BREADCRUMBS */
+
+    div.breadcrumbs{
+
+        background:
+        rgba(15,23,42,0.82);
+
+        color:white;
+
+        border:none;
+    }
+
+    /* RECENT ACTIONS */
+
+    #content-related{
+
+        background:
+        rgba(15,23,42,0.88);
+
+        backdrop-filter:blur(14px);
+
+        border-radius:20px;
+
+        border:
+        1px solid rgba(255,255,255,0.06);
+
+        overflow:hidden;
+    }
+
+    #content-related h2{
+
+        background:
+        linear-gradient(
+            135deg,
+            #ff8c42,
+            #ff5e62
+        );
+
+        color:white;
+
+        padding:14px;
+    }
+
+    /* TEXT */
+
+    h1{
+
+        color:white;
+    }
+
+    .quiet,
+    p,
+    label{
+
+        color:#d1d5db !important;
+    }
+
+    /* USER TOOLS */
+
+    #user-tools{
+
+        color:white;
+    }
+
+    #user-tools a{
+
+        color:white !important;
+    }
+
+</style>
+
+{% endblock %}
