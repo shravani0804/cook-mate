@@ -35,24 +35,7 @@ def signup(request):
     })
 
 @login_required
-def role_redirect(request):
-
-    if request.user.is_staff:
-
-        return redirect(
-            'admin_dashboard'
-        )
-
-    return redirect(
-        'home'
-    )
-
-@login_required
 def admin_dashboard(request):
-
-    if not request.user.is_staff:
-
-        return redirect('home')
 
     total_recipes = Recipe.objects.count()
 
@@ -60,27 +43,37 @@ def admin_dashboard(request):
 
     total_favorites = Favorite.objects.count()
 
-    recent_recipes = Recipe.objects.order_by(
-        '-id'
-    )[:5]
+    total_ingredients = Ingredient.objects.count()
+
+    latest_recipes = Recipe.objects.order_by('-id')[:5]
+
+    context = {
+
+        'total_recipes': total_recipes,
+
+        'total_users': total_users,
+
+        'total_favorites': total_favorites,
+
+        'total_ingredients': total_ingredients,
+
+        'latest_recipes': latest_recipes,
+    }
 
     return render(
-
         request,
-
         'admin_dashboard.html',
-
-        {
-
-            'total_recipes': total_recipes,
-
-            'total_users': total_users,
-
-            'total_favorites': total_favorites,
-
-            'recent_recipes': recent_recipes
-        }
+        context
     )
+
+def role_redirect(request):
+
+    if request.user.is_superuser:
+
+        return redirect('/admin-dashboard/')
+
+    return redirect('/')
+     
 
 
 def home(request):
