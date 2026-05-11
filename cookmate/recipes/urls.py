@@ -1,8 +1,17 @@
 from django.urls import path
 from . import views
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
-    path('', views.home, name='home'),
+
+    path(
+    '',
+    RedirectView.as_view(
+        url='/accounts/login/'
+    )
+),
+    path('home/', views.home, name='home'),
+    
     path(
         'signup/',
         views.signup,
@@ -55,5 +64,11 @@ path(
     'admin-dashboard/',
     views.admin_dashboard,
     name='admin_dashboard'
+),
+
+path(
+    'landing/',
+    views.landing_page,
+    name='landing'
 ),
 ]

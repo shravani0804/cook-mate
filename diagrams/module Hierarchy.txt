@@ -1,0 +1,71 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="CookMate Module Hierarchy">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Main Module -->
+        <mxCell id="main" value="Cook Mate System" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="20" width="220" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- User Interface Module -->
+        <mxCell id="ui" value="1. User Interface Module&#xa;- Ingredient Input Interface&#xa;- Recipe Display Interface&#xa;- Recipe Instruction Viewer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="60" y="160" width="240" height="130" as="geometry"/>
+        </mxCell>
+
+        <!-- Ingredient Processing Module -->
+        <mxCell id="ingredient" value="2. Ingredient Processing Module&#xa;- Ingredient Normalization&#xa;- Ingredient Matching Engine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="340" y="160" width="240" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Recipe Recommendation Module -->
+        <mxCell id="recommend" value="3. Recipe Recommendation Module&#xa;- Recipe Filtering&#xa;- Smart Recipe Ranking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="620" y="160" width="240" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Nutrition Analysis Module -->
+        <mxCell id="nutrition" value="4. Nutrition Analysis Module&#xa;- Ingredient Nutrition Lookup&#xa;- Recipe Nutrition Calculator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="900" y="160" width="260" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Missing Ingredient Module -->
+        <mxCell id="missing" value="5. Missing Ingredient Detection Module&#xa;- Missing Ingredient Identifier&#xa;- Shopping List Generator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="260" y="380" width="280" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Dataset Management Module -->
+        <mxCell id="dataset" value="6. Dataset Management Module&#xa;- Dataset Loader&#xa;- Data Cleaning Module" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4e1f5;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="700" y="380" width="260" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Connections -->
+        <mxCell id="e1" edge="1" source="main" target="ui" parent="1" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" edge="1" source="main" target="ingredient" parent="1" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" edge="1" source="main" target="recommend" parent="1" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" edge="1" source="main" target="nutrition" parent="1" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" edge="1" source="main" target="missing" parent="1" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e6" edge="1" source="main" target="dataset" parent="1" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

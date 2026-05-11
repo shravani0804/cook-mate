@@ -5,19 +5,13 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>CookMate Admin Dashboard</title>
+    <title>Admin Dashboard | CookMate</title>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
     <style>
 
@@ -25,192 +19,209 @@
             margin:0;
             padding:0;
             box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
         }
 
         body{
 
-            font-family:'Poppins',sans-serif;
-
             background:
-            linear-gradient(
-                rgba(4,8,20,0.88),
-                rgba(4,8,20,0.92)
-            ),
-            url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1800&auto=format&fit=crop');
+            linear-gradient(rgba(245,245,245,0.92),
+            rgba(245,245,245,0.95)),
+            url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1974&auto=format&fit=crop');
 
             background-size:cover;
-
+            background-position:center;
             background-attachment:fixed;
 
-            min-height:100vh;
-
-            color:white;
-
-            padding:40px;
+            color:#222;
         }
 
-        .container{
+        /* NAVBAR */
 
-            max-width:1500px;
+        .navbar{
 
-            margin:auto;
-        }
+            width:100%;
 
-        /* HEADER */
+            padding:22px 70px;
 
-        .top-bar{
+            background:white;
 
             display:flex;
-
             justify-content:space-between;
-
             align-items:center;
 
-            margin-bottom:40px;
+            box-shadow:0 2px 15px rgba(0,0,0,0.08);
 
-            flex-wrap:wrap;
-
-            gap:20px;
+            position:sticky;
+            top:0;
+            z-index:100;
         }
 
-        .title{
+        .logo{
 
-            font-size:48px;
-
+            font-size:34px;
             font-weight:700;
+            color:#ff6b35;
         }
 
-        .title span{
+        .nav-links{
 
-            color:#ff8c42;
+            display:flex;
+            gap:35px;
         }
 
-        .logout-btn{
+        .nav-links a{
 
             text-decoration:none;
-
-            background:
-            linear-gradient(
-                135deg,
-                #ff8c42,
-                #ff5e62
-            );
-
-            color:white;
-
-            padding:14px 24px;
-
-            border-radius:16px;
-
-            font-weight:600;
-
-            transition:0.35s ease;
-
-            box-shadow:
-            0 15px 30px rgba(255,94,98,0.25);
+            color:#333;
+            font-weight:500;
+            transition:0.3s;
         }
 
-        .logout-btn:hover{
+        .nav-links a:hover{
 
-            transform:
-            translateY(-4px);
+            color:#ff6b35;
+        }
+
+        /* HERO */
+
+        .hero{
+
+            width:90%;
+            margin:40px auto 20px auto;
+
+            text-align:center;
+        }
+
+        .hero h1{
+
+            font-size:56px;
+            margin-bottom:15px;
+            color:#222;
+        }
+
+        .hero span{
+
+            color:#ff6b35;
+        }
+
+        .hero p{
+
+            font-size:18px;
+            color:#666;
         }
 
         /* STATS */
 
         .stats-grid{
 
+            width:92%;
+
+            margin:40px auto;
+
             display:grid;
-
-            grid-template-columns:
-            repeat(auto-fit,minmax(250px,1fr));
-
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
             gap:25px;
-
-            margin-bottom:40px;
         }
 
         .stat-card{
 
-            background:
-            rgba(15,23,42,0.82);
+            background:white;
 
-            backdrop-filter:blur(16px);
+            padding:30px;
 
-            padding:35px;
+            border-radius:24px;
 
-            border-radius:28px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.08);
 
-            border:
-            1px solid rgba(255,255,255,0.06);
-
-            transition:0.4s ease;
-
-            box-shadow:
-            0 15px 35px rgba(0,0,0,0.3);
+            transition:0.3s;
         }
 
         .stat-card:hover{
 
-            transform:
-            translateY(-8px);
+            transform:translateY(-6px);
         }
 
-        .stat-card h2{
+        .stat-icon{
 
-            font-size:18px;
-
-            color:#d1d5db;
+            font-size:38px;
 
             margin-bottom:15px;
         }
 
-        .stat-card p{
+        .stat-title{
+
+            font-size:18px;
+
+            color:#666;
+
+            margin-bottom:10px;
+        }
+
+        .stat-value{
 
             font-size:42px;
 
             font-weight:700;
 
-            color:#ff8c42;
+            color:#ff6b35;
         }
 
-        /* GRID */
+        /* SECTION */
 
-        .dashboard-grid{
+        .dashboard-section{
 
-            display:grid;
+            width:92%;
 
-            grid-template-columns:
-            2fr 1fr;
+            margin:40px auto;
 
-            gap:30px;
-        }
+            background:white;
 
-        /* PANELS */
-
-        .panel{
-
-            background:
-            rgba(15,23,42,0.82);
-
-            backdrop-filter:blur(16px);
+            padding:35px;
 
             border-radius:28px;
 
-            padding:30px;
-
-            border:
-            1px solid rgba(255,255,255,0.06);
-
-            box-shadow:
-            0 15px 35px rgba(0,0,0,0.3);
+            box-shadow:0 10px 30px rgba(0,0,0,0.08);
         }
 
-        .panel h2{
+        .section-header{
 
-            margin-bottom:25px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
 
-            font-size:28px;
+            margin-bottom:30px;
+        }
+
+        .section-header h2{
+
+            font-size:32px;
+        }
+
+        .add-btn{
+
+            text-decoration:none;
+
+            background:linear-gradient(
+                135deg,
+                #ff6b35,
+                #ff8e53
+            );
+
+            color:white;
+
+            padding:14px 22px;
+
+            border-radius:14px;
+
+            font-weight:600;
+
+            transition:0.3s;
+        }
+
+        .add-btn:hover{
+
+            transform:translateY(-3px);
         }
 
         /* TABLE */
@@ -224,113 +235,81 @@
 
         th{
 
+            background:#fff4ef;
+
+            color:#ff6b35;
+
+            padding:18px;
+
             text-align:left;
 
-            padding:15px;
-
-            color:#ff8c42;
-
-            border-bottom:
-            1px solid rgba(255,255,255,0.08);
+            font-size:15px;
         }
 
         td{
 
-            padding:15px;
+            padding:18px;
 
-            border-bottom:
-            1px solid rgba(255,255,255,0.05);
+            border-bottom:1px solid #f1f1f1;
 
-            color:#d1d5db;
-        }
-
-        tr{
-
-            transition:0.3s ease;
+            color:#444;
         }
 
         tr:hover{
 
-            background:
-            rgba(255,255,255,0.04);
+            background:#fafafa;
         }
 
-        /* AI INSIGHTS */
+        /* ACTION BUTTONS */
 
-        .insight{
-
-            background:
-            rgba(255,255,255,0.05);
-
-            padding:18px;
-
-            border-radius:18px;
-
-            margin-bottom:18px;
-
-            transition:0.35s ease;
-        }
-
-        .insight:hover{
-
-            transform:
-            translateY(-4px);
-        }
-
-        /* BUTTON */
-
-        .manage-btn{
-
-            display:inline-block;
-
-            margin-top:25px;
+        .action-btn{
 
             text-decoration:none;
 
-            background:
-            linear-gradient(
-                135deg,
-                #ff8c42,
-                #ff5e62
-            );
+            padding:10px 14px;
 
-            color:white;
+            border-radius:10px;
 
-            padding:14px 22px;
-
-            border-radius:16px;
-
+            font-size:14px;
             font-weight:600;
 
-            transition:0.35s ease;
+            margin-right:10px;
+
+            display:inline-block;
         }
 
-        .manage-btn:hover{
+        .edit-btn{
 
-            transform:
-            translateY(-3px);
+            background:#fff4ef;
+
+            color:#ff6b35;
+        }
+
+        .delete-btn{
+
+            background:#ffecec;
+
+            color:#ef4444;
         }
 
         /* RESPONSIVE */
 
-        @media(max-width:1100px){
+        @media(max-width:900px){
 
-            .dashboard-grid{
+            .navbar{
 
-                grid-template-columns:1fr;
-            }
-        }
-
-        @media(max-width:768px){
-
-            body{
-
-                padding:20px;
+                flex-direction:column;
+                gap:18px;
             }
 
-            .title{
+            .hero h1{
 
-                font-size:36px;
+                font-size:42px;
+            }
+
+            .dashboard-section{
+
+                overflow-x:auto;
             }
         }
 
@@ -340,26 +319,64 @@
 
 <body>
 
-<div class="container">
+    <!-- NAVBAR -->
 
-    <!-- HEADER -->
+    <div class="navbar">
 
-    <div class="top-bar">
+        <div class="logo">
 
-        <h1 class="title">
+            🍳 CookMate Admin
 
-            🍳 CookMate <span>Admin</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/landing/">
+
+                Home
+
+            </a>
+
+            <a href="/home/">
+
+                Recommendations
+
+            </a>
+
+            <a href="/favorites/">
+
+                Favorites
+
+            </a>
+
+            <a href="/add-recipe/">
+
+                Add Recipe
+
+            </a>
+
+            <a href="/logout/">Logout</a>
+
+        </div>
+
+    </div>
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+        <h1>
+
+            Admin
+            <span>Dashboard</span>
 
         </h1>
 
-        <a
-            href="/logout/"
-            class="logout-btn"
-        >
+        <p>
 
-            Logout
+            Manage recipes, ingredients, users and platform activity
 
-        </a>
+        </p>
 
     </div>
 
@@ -369,142 +386,218 @@
 
         <div class="stat-card">
 
-            <h2>Total Recipes</h2>
+            <div class="stat-icon">
 
-            <p>{{ total_recipes }}</p>
+                🍽
 
-        </div>
+            </div>
 
-        <div class="stat-card">
+            <div class="stat-title">
 
-            <h2>Total Users</h2>
+                Total Recipes
 
-            <p>{{ total_users }}</p>
+            </div>
 
-        </div>
+            <div class="stat-value">
 
-        <div class="stat-card">
+                {{ total_recipes }}
 
-            <h2>Total Favorites</h2>
-
-            <p>{{ total_favorites }}</p>
+            </div>
 
         </div>
 
         <div class="stat-card">
 
-            <h2>Total Ingredients</h2>
+            <div class="stat-icon">
 
-            <p>{{ total_ingredients }}</p>
+                👥
+
+            </div>
+
+            <div class="stat-title">
+
+                Total Users
+
+            </div>
+
+            <div class="stat-value">
+
+                {{ total_users }}
+
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                ❤️
+
+            </div>
+
+            <div class="stat-title">
+
+                Favorites
+
+            </div>
+
+            <div class="stat-value">
+
+                {{ total_favorites }}
+
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                🛒
+
+            </div>
+
+            <div class="stat-title">
+
+                Shopping Lists
+
+            </div>
+
+            <div class="stat-value">
+
+                {{ total_shopping }}
+
+            </div>
 
         </div>
 
     </div>
 
-    <!-- MAIN GRID -->
+    <!-- RECIPES TABLE -->
 
-    <div class="dashboard-grid">
+    <div class="dashboard-section">
 
-        <!-- RECIPES -->
-
-        <div class="panel">
+        <div class="section-header">
 
             <h2>
 
-                📋 Latest Recipes
+                Recent Recipes
 
             </h2>
 
-            <table>
-
-                <tr>
-
-                    <th>Name</th>
-
-                    <th>Cuisine</th>
-
-                    <th>Difficulty</th>
-
-                </tr>
-
-                {% for recipe in latest_recipes %}
-
-                <tr>
-
-                    <td>
-
-                        {{ recipe.name }}
-
-                    </td>
-
-                    <td>
-
-                        {{ recipe.cuisine }}
-
-                    </td>
-
-                    <td>
-
-                        {{ recipe.difficulty }}
-
-                    </td>
-
-                </tr>
-
-                {% endfor %}
-
-            </table>
-
             <a
-                href="/admin/recipes/recipe/"
-                class="manage-btn"
+                href="/add-recipe/"
+                class="add-btn"
             >
 
-                Manage Recipes
+                + Add Recipe
 
             </a>
 
         </div>
 
-        <!-- AI INSIGHTS -->
+        <table>
 
-        <div class="panel">
+            <thead>
 
-            <h2>
+                <tr>
 
-                🤖 AI Insights
+                    <th>
 
-            </h2>
+                        Recipe
 
-            <div class="insight">
+                    </th>
 
-                🔥 High protein recipes are trending.
+                    <th>
 
-            </div>
+                        Cuisine
 
-            <div class="insight">
+                    </th>
 
-                🥗 Healthy recipes receive more favorites.
+                    <th>
 
-            </div>
+                        Difficulty
 
-            <div class="insight">
+                    </th>
 
-                🌍 International cuisine has highest engagement.
+                    <th>
 
-            </div>
+                        Cooking Time
 
-            <div class="insight">
+                    </th>
 
-                ⚡ Easy recipes are most searched by users.
+                    <th>
 
-            </div>
+                        Actions
 
-        </div>
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for recipe in recipes %}
+
+                    <tr>
+
+                        <td>
+
+                            {{ recipe.name }}
+
+                        </td>
+
+                        <td>
+
+                            {{ recipe.cuisine }}
+
+                        </td>
+
+                        <td>
+
+                            {{ recipe.difficulty }}
+
+                        </td>
+
+                        <td>
+
+                            {{ recipe.cooking_time }} mins
+
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="/recipe/{{ recipe.id }}/"
+                                class="action-btn edit-btn"
+                            >
+
+                                View
+
+                            </a>
+
+                            <a
+                                href="#"
+                                class="action-btn delete-btn"
+                            >
+
+                                Delete
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
 
     </div>
-
-</div>
 
 </body>
 

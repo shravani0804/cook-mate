@@ -5,17 +5,13 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Favorite Recipes</title>
+    <title>CookMate Favorites</title>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
     <style>
 
@@ -23,267 +19,178 @@
             margin:0;
             padding:0;
             box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
         }
 
         body{
 
-            font-family:'Poppins',sans-serif;
-
             background:
-            linear-gradient(
-                rgba(4,8,20,0.85),
-                rgba(4,8,20,0.9)
-            ),
-            url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1800&auto=format&fit=crop');
+            linear-gradient(rgba(245,245,245,0.92),
+            rgba(245,245,245,0.95)),
+            url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop');
 
             background-size:cover;
             background-position:center;
             background-attachment:fixed;
-
-            min-height:100vh;
-
-            padding:40px;
         }
 
-        .container{
+        /* NAVBAR */
 
-            max-width:1450px;
+        .navbar{
 
-            margin:auto;
-        }
-
-        /* HEADER */
-
-        .top-bar{
+            width:100%;
+            padding:20px 70px;
+            background:white;
 
             display:flex;
-
             justify-content:space-between;
-
             align-items:center;
 
-            margin-bottom:40px;
+            box-shadow:0 2px 15px rgba(0,0,0,0.08);
 
-            flex-wrap:wrap;
-
-            gap:20px;
+            position:sticky;
+            top:0;
+            z-index:100;
         }
 
-        .page-title{
+        .logo{
 
-            font-size:42px;
-
-            color:white;
-
+            font-size:34px;
             font-weight:700;
+            color:#ff6b35;
         }
 
-        .page-title span{
+        .nav-links{
 
-            color:#ff8c42;
+            display:flex;
+            gap:35px;
         }
 
-        /* BUTTON */
-
-        .back-btn{
+        .nav-links a{
 
             text-decoration:none;
-
-            background:
-            linear-gradient(
-                135deg,
-                #ff8c42,
-                #ff5e62
-            );
-
-            color:white;
-
-            padding:14px 24px;
-
-            border-radius:16px;
-
-            font-weight:600;
-
-            transition:0.35s ease;
-
-            box-shadow:
-            0 15px 30px rgba(255,94,98,0.25);
+            color:#333;
+            font-weight:500;
+            transition:0.3s;
         }
 
-        .back-btn:hover{
+        .nav-links a:hover{
 
-            transform:
-            translateY(-4px);
+            color:#ff6b35;
+        }
 
-            box-shadow:
-            0 22px 40px rgba(255,94,98,0.35);
+        /* HERO */
+
+        .hero{
+
+            width:90%;
+            margin:40px auto 20px auto;
+
+            text-align:center;
+        }
+
+        .hero h1{
+
+            font-size:52px;
+            margin-bottom:15px;
+            color:#222;
+        }
+
+        .hero span{
+
+            color:#ff6b35;
+        }
+
+        .hero p{
+
+            font-size:18px;
+            color:#666;
         }
 
         /* GRID */
 
         .recipe-grid{
 
+            width:92%;
+            margin:40px auto;
+
             display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:30px;
 
-            grid-template-columns:
-            repeat(auto-fit,minmax(340px,1fr));
-
-            gap:35px;
+            padding-bottom:70px;
         }
 
         /* CARD */
 
         .recipe-card{
 
-            background:
-            rgba(15,23,42,0.85);
+            background:white;
 
-            backdrop-filter:blur(16px);
-
-            border-radius:28px;
+            border-radius:24px;
 
             overflow:hidden;
 
-            border:1px solid rgba(255,255,255,0.08);
+            box-shadow:0 10px 25px rgba(0,0,0,0.08);
 
-            box-shadow:
-            0 18px 40px rgba(0,0,0,0.3);
-
-            transition:0.45s ease;
+            transition:0.4s;
         }
 
         .recipe-card:hover{
 
-            transform:
-            translateY(-10px);
+            transform:translateY(-10px);
 
-            box-shadow:
-            0 30px 55px rgba(0,0,0,0.45);
-        }
-
-        /* IMAGE */
-
-        .image-wrapper{
-
-            overflow:hidden;
+            box-shadow:0 18px 40px rgba(0,0,0,0.15);
         }
 
         .recipe-image{
 
             width:100%;
-
-            height:260px;
-
+            height:230px;
             object-fit:cover;
-
-            transition:0.6s ease;
         }
-
-        .recipe-card:hover .recipe-image{
-
-            transform:scale(1.08);
-        }
-
-        /* CONTENT */
 
         .recipe-content{
 
-            padding:25px;
+            padding:22px;
         }
 
         .recipe-title{
 
-            font-size:28px;
-
+            font-size:24px;
             font-weight:700;
-
-            margin-bottom:18px;
-
-            color:white;
+            margin-bottom:12px;
+            color:#222;
         }
 
-        /* TAGS */
+        .recipe-info{
 
-        .info-grid{
-
-            display:flex;
-
-            flex-wrap:wrap;
-
-            gap:12px;
-
-            margin-bottom:20px;
-        }
-
-        .info-tag{
-
-            background:
-            rgba(255,255,255,0.06);
-
-            color:#d1d5db;
-
-            padding:10px 16px;
-
-            border-radius:30px;
-
-            font-size:14px;
-
-            border:1px solid rgba(255,255,255,0.05);
+            color:#666;
+            margin-bottom:10px;
+            font-size:15px;
         }
 
         /* NUTRITION */
 
         .nutrition-box{
 
-            margin-top:20px;
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
 
-            display:grid;
-
-            grid-template-columns:
-            repeat(2,1fr);
-
-            gap:15px;
+            margin-top:15px;
+            margin-bottom:20px;
         }
 
-        .nutrition-card{
+        .nutrition-item{
 
-            background:
-            rgba(255,255,255,0.05);
+            background:#f4f4f4;
 
-            padding:18px;
+            padding:10px 14px;
 
-            border-radius:18px;
+            border-radius:10px;
 
-            text-align:center;
-
-            transition:0.35s ease;
-        }
-
-        .nutrition-card:hover{
-
-            transform:
-            translateY(-4px);
-
-            background:
-            rgba(255,255,255,0.08);
-        }
-
-        .nutrition-card h4{
-
-            color:#ff8c42;
-
-            margin-bottom:8px;
-
-            font-size:16px;
-        }
-
-        .nutrition-card p{
-
-            color:white;
-
-            font-size:22px;
-
-            font-weight:700;
+            font-size:14px;
         }
 
         /* BUTTONS */
@@ -291,118 +198,124 @@
         .button-group{
 
             display:flex;
-
-            gap:15px;
-
-            margin-top:25px;
-        }
-
-        .favorite-btn{
-
-            flex:1;
-
-            text-align:center;
-
-            text-decoration:none;
-
-            padding:14px;
-
-            border-radius:16px;
-
-            font-weight:600;
-
-            transition:0.35s ease;
-        }
-
-        .remove-btn{
-
-            background:
-            linear-gradient(
-                135deg,
-                #ff5e62,
-                #ff2e63
-            );
-
-            color:white;
+            gap:12px;
+            flex-wrap:wrap;
         }
 
         .view-btn{
 
-            background:
-            rgba(255,255,255,0.08);
+            display:inline-block;
+
+            padding:12px 18px;
+
+            background:linear-gradient(135deg,#ff6b35,#ff8e53);
 
             color:white;
 
-            border:1px solid rgba(255,255,255,0.08);
+            text-decoration:none;
+
+            border-radius:10px;
+
+            font-weight:600;
+
+            transition:0.3s;
         }
 
-        .favorite-btn:hover{
+        .view-btn:hover{
 
-            transform:
-            translateY(-3px);
+            transform:scale(1.05);
         }
 
-        /* EMPTY */
+        .remove-btn{
+
+            display:inline-block;
+
+            padding:12px 18px;
+
+            background:#ef4444;
+
+            color:white;
+
+            text-decoration:none;
+
+            border-radius:10px;
+
+            font-weight:600;
+
+            transition:0.3s;
+        }
+
+        .remove-btn:hover{
+
+            transform:scale(1.05);
+        }
+
+        /* EMPTY BOX */
 
         .empty-box{
 
-            background:
-            rgba(15,23,42,0.82);
+            width:60%;
 
-            backdrop-filter:blur(16px);
+            margin:80px auto;
+
+            background:white;
+
+            padding:60px;
 
             border-radius:30px;
 
-            padding:80px 40px;
-
             text-align:center;
 
-            border:1px solid rgba(255,255,255,0.08);
-
-            box-shadow:
-            0 20px 45px rgba(0,0,0,0.3);
+            box-shadow:0 10px 30px rgba(0,0,0,0.08);
         }
 
         .empty-box h2{
 
-            font-size:40px;
-
-            color:white;
-
-            margin-bottom:20px;
+            font-size:38px;
+            margin-bottom:15px;
         }
 
         .empty-box p{
 
-            color:#d1d5db;
+            color:#666;
+            margin-bottom:30px;
+        }
 
-            font-size:18px;
+        .browse-btn{
+
+            display:inline-block;
+
+            padding:14px 24px;
+
+            background:linear-gradient(135deg,#ff6b35,#ff8e53);
+
+            color:white;
+
+            text-decoration:none;
+
+            border-radius:12px;
+
+            font-weight:600;
         }
 
         /* RESPONSIVE */
 
-        @media(max-width:768px){
+        @media(max-width:900px){
 
-            body{
-
-                padding:20px;
-            }
-
-            .top-bar{
+            .navbar{
 
                 flex-direction:column;
-
-                align-items:flex-start;
+                gap:20px;
             }
 
-            .page-title{
+            .hero h1{
 
-                font-size:34px;
+                font-size:42px;
             }
 
-            .button-group{
+            .empty-box{
 
-                flex-direction:column;
+                width:90%;
             }
         }
 
@@ -412,173 +325,182 @@
 
 <body>
 
-<div class="container">
+    <!-- NAVBAR -->
 
-    <!-- HEADER -->
+    <div class="navbar">
 
-    <div class="top-bar">
+        <div class="logo">
+            🍳 CookMate
+        </div>
 
-        <a
-            href="/"
-            class="back-btn"
-        >
+        <div class="nav-links">
 
-            ← Back To Home
+            <a href="/landing/">Home</a>
 
-        </a>
+            <a href="/home/">Recommendations</a>
 
-        <h1 class="page-title">
+            <a href="/favorites/">Favorites</a>
 
-            ❤️ My <span>Favorite</span> Recipes
+            <a href="/add-recipe/">Add Recipe</a>
 
-        </h1>
-
-    </div>
-
-    {% if favorite_items %}
-
-    <!-- GRID -->
-
-    <div class="recipe-grid">
-
-        {% for item in favorite_items %}
-
-        <div class="recipe-card">
-
-            {% if item.recipe.image %}
-
-            <div class="image-wrapper">
-
-                <img
-                    src="{{ item.recipe.image.url }}"
-                    class="recipe-image"
-                >
-
-            </div>
-
-            {% endif %}
-
-            <div class="recipe-content">
-
-                <div class="recipe-title">
-
-                    {{ item.recipe.name }}
-
-                </div>
-
-                <!-- INFO TAGS -->
-
-                <div class="info-grid">
-
-                    <div class="info-tag">
-
-                        ⏱ {{ item.recipe.cooking_time }} mins
-
-                    </div>
-
-                    <div class="info-tag">
-
-                        ⚡ {{ item.recipe.difficulty }}
-
-                    </div>
-
-                    <div class="info-tag">
-
-                        🌍 {{ item.recipe.cuisine }}
-
-                    </div>
-
-                </div>
-
-                <!-- NUTRITION -->
-
-                {% if item.recipe.nutrition %}
-
-                <div class="nutrition-box">
-
-                    <div class="nutrition-card">
-
-                        <h4>Calories</h4>
-
-                        <p>
-
-                            {{ item.recipe.nutrition.calories }}
-
-                        </p>
-
-                    </div>
-
-                    <div class="nutrition-card">
-
-                        <h4>Protein</h4>
-
-                        <p>
-
-                            {{ item.recipe.nutrition.protein }} g
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                {% endif %}
-
-                <!-- BUTTONS -->
-
-                <div class="button-group">
-
-                    <a
-                        href="/recipe/{{ item.recipe.id }}/"
-                        class="favorite-btn view-btn"
-                    >
-
-                        View Recipe
-
-                    </a>
-
-                    <a
-                        href="/favorite/{{ item.recipe.id }}/"
-                        class="favorite-btn remove-btn"
-                    >
-
-                        Remove
-
-                    </a>
-
-                </div>
-
-            </div>
+            <a href="/logout/">Logout</a>
 
         </div>
 
-        {% endfor %}
-
     </div>
 
-    {% else %}
+    <!-- HERO -->
 
-    <!-- EMPTY -->
+    <div class="hero">
 
-    <div class="empty-box">
+        <h1>
 
-        <h2>
+            ❤️ Your Favorite
+            <span>Recipes</span>
 
-            No Favorite Recipes Yet
-
-        </h2>
+        </h1>
 
         <p>
 
-            Start adding recipes to favorites ❤️
+            Save and revisit your most loved recipes anytime
 
         </p>
 
     </div>
 
-    {% endif %}
+    <!-- FAVORITES -->
 
-</div>
+    {% if favorite_items %}
+
+        <div class="recipe-grid">
+
+            {% for item in favorite_items %}
+
+                <div class="recipe-card">
+
+                    {% if item.recipe.image %}
+
+                        <img
+                            src="{{ item.recipe.image.url }}"
+                            class="recipe-image"
+                        >
+
+                    {% else %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1974&auto=format&fit=crop"
+                            class="recipe-image"
+                        >
+
+                    {% endif %}
+
+                    <div class="recipe-content">
+
+                        <div class="recipe-title">
+
+                            {{ item.recipe.name }}
+
+                        </div>
+
+                        <div class="recipe-info">
+
+                            ⏱ {{ item.recipe.cooking_time }} mins
+
+                        </div>
+
+                        <div class="recipe-info">
+
+                            ⭐ {{ item.recipe.difficulty }}
+
+                        </div>
+
+                        <div class="recipe-info">
+
+                            🌍 {{ item.recipe.cuisine }}
+
+                        </div>
+
+                        {% if item.recipe.nutrition %}
+
+                            <div class="nutrition-box">
+
+                                <div class="nutrition-item">
+
+                                    🔥
+                                    {{ item.recipe.nutrition.calories }}
+                                    cal
+
+                                </div>
+
+                                <div class="nutrition-item">
+
+                                    💪
+                                    {{ item.recipe.nutrition.protein }}g Protein
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+                        <div class="button-group">
+
+                            <a
+                                href="/recipe/{{ item.recipe.id }}/"
+                                class="view-btn"
+                            >
+
+                                View Recipe →
+
+                            </a>
+
+                            <a
+                                href="/favorite/{{ item.recipe.id }}/"
+                                class="remove-btn"
+                            >
+
+                                Remove
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-box">
+
+            <h2>
+
+                No Favorites Yet
+
+            </h2>
+
+            <p>
+
+                Start saving recipes you love ❤️
+
+            </p>
+
+            <a
+                href="/landing/"
+                class="browse-btn"
+            >
+
+                Browse Recipes
+
+            </a>
+
+        </div>
+
+    {% endif %}
 
 </body>
 

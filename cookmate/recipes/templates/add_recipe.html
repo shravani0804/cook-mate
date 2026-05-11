@@ -5,17 +5,13 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Add Recipe</title>
+    <title>Add Recipe | CookMate</title>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
     <style>
 
@@ -23,289 +19,313 @@
             margin:0;
             padding:0;
             box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
         }
 
         body{
 
-            font-family:'Poppins',sans-serif;
-
             min-height:100vh;
 
-            display:flex;
-
-            justify-content:center;
-
-            align-items:center;
-
-            padding:40px;
-
             background:
-            linear-gradient(
-                rgba(4,8,20,0.82),
-                rgba(4,8,20,0.9)
-            ),
-            url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1800&auto=format&fit=crop');
+            linear-gradient(rgba(245,245,245,0.92),
+            rgba(245,245,245,0.95)),
+            url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1974&auto=format&fit=crop');
 
             background-size:cover;
             background-position:center;
             background-attachment:fixed;
+
+            color:#222;
         }
 
-        .container{
+        /* NAVBAR */
+
+        .navbar{
 
             width:100%;
 
-            max-width:850px;
+            padding:22px 70px;
 
-            background:
-            rgba(15,23,42,0.86);
+            background:white;
 
-            backdrop-filter:blur(16px);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
 
-            border-radius:35px;
+            box-shadow:0 2px 15px rgba(0,0,0,0.08);
+
+            position:sticky;
+            top:0;
+            z-index:100;
+        }
+
+        .logo{
+
+            font-size:34px;
+            font-weight:700;
+            color:#ff6b35;
+        }
+
+        .nav-links{
+
+            display:flex;
+            gap:35px;
+        }
+
+        .nav-links a{
+
+            text-decoration:none;
+            color:#333;
+            font-weight:500;
+            transition:0.3s;
+        }
+
+        .nav-links a:hover{
+
+            color:#ff6b35;
+        }
+
+        .logout-btn{
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    color:#333;
+
+    font-weight:500;
+
+    font-size:15px;
+
+    transition:0.3s;
+}
+
+.logout-btn:hover{
+
+    color:#ff6b35;
+}
+
+        /* HERO */
+
+        .hero{
+
+            width:90%;
+            margin:40px auto 20px auto;
+
+            text-align:center;
+        }
+
+        .hero h1{
+
+            font-size:56px;
+            margin-bottom:15px;
+            color:#222;
+        }
+
+        .hero span{
+
+            color:#ff6b35;
+        }
+
+        .hero p{
+
+            font-size:18px;
+            color:#666;
+        }
+
+        /* FORM CONTAINER */
+
+        .form-container{
+
+            width:92%;
+
+            max-width:1100px;
+
+            margin:30px auto 70px auto;
+
+            background:white;
 
             padding:45px;
 
-            border:1px solid rgba(255,255,255,0.08);
+            border-radius:32px;
 
-            box-shadow:
-            0 25px 50px rgba(0,0,0,0.35);
-
-            animation:fadeUp 0.8s ease;
+            box-shadow:0 15px 40px rgba(0,0,0,0.10);
         }
 
-        /* TITLE */
+        /* GRID */
 
-        h1{
+        .form-grid{
 
-            text-align:center;
-
-            color:white;
-
-            font-size:48px;
-
-            margin-bottom:12px;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:25px;
         }
 
-        .subtitle{
+        .full-width{
 
-            text-align:center;
-
-            color:#d1d5db;
-
-            margin-bottom:40px;
-
-            font-size:18px;
+            grid-column:1 / -1;
         }
 
-        /* FORM */
+        /* INPUTS */
 
-        form{
+        .input-group{
 
             display:flex;
-
             flex-direction:column;
         }
 
-        label{
-
-            color:white;
+        .input-group label{
 
             margin-bottom:10px;
 
-            font-weight:500;
+            font-size:15px;
+            font-weight:600;
 
-            font-size:16px;
+            color:#333;
         }
 
-        input,
-        textarea,
-        select{
+        .input-group input,
+        .input-group textarea,
+        .input-group select{
 
             width:100%;
 
-            padding:16px;
+            padding:16px 18px;
 
-            margin-bottom:25px;
+            border:1px solid #e5e7eb;
 
-            border-radius:18px;
+            border-radius:16px;
 
-            border:
-            1px solid rgba(255,255,255,0.08);
-
-            background:
-            rgba(255,255,255,0.05);
-
-            color:white;
+            background:#f9fafb;
 
             font-size:15px;
 
-            transition:0.35s ease;
-
             outline:none;
+
+            transition:0.3s;
         }
 
-        input:focus,
-        textarea:focus,
-        select:focus{
-
-            border:
-            1px solid #ff8c42;
-
-            box-shadow:
-            0 0 0 4px rgba(255,140,66,0.12);
-        }
-
-        textarea{
-
-            min-height:130px;
+        .input-group textarea{
 
             resize:none;
+
+            min-height:130px;
         }
 
-        /* PLACEHOLDER */
+        .input-group input:focus,
+        .input-group textarea:focus,
+        .input-group select:focus{
 
-        input::placeholder,
-        textarea::placeholder{
+            border-color:#ff6b35;
 
-            color:#94a3b8;
+            background:white;
+
+            box-shadow:0 0 0 4px rgba(255,107,53,0.10);
         }
 
-        /* FILE INPUT */
+        /* FILE BOX */
 
-        input[type="file"]{
+        .file-box{
 
-            padding:14px;
+            border:2px dashed #d1d5db;
 
-            color:#d1d5db;
+            border-radius:22px;
+
+            padding:35px;
+
+            text-align:center;
+
+            background:#fafafa;
+
+            transition:0.3s;
+        }
+
+        .file-box:hover{
+
+            border-color:#ff6b35;
+
+            background:#fff7f4;
+        }
+
+        .file-box input{
+
+            margin-top:18px;
+        }
+
+        /* SECTION TITLE */
+
+        .section-title{
+
+            font-size:24px;
+            font-weight:700;
+
+            margin-bottom:25px;
+
+            color:#222;
         }
 
         /* BUTTON */
 
-        button{
+        .submit-btn{
 
-            background:
-            linear-gradient(
+            width:100%;
+
+            margin-top:35px;
+
+            padding:18px;
+
+            border:none;
+
+            border-radius:18px;
+
+            background:linear-gradient(
                 135deg,
-                #ff8c42,
-                #ff5e62
+                #ff6b35,
+                #ff8e53
             );
 
             color:white;
 
-            border:none;
-
-            padding:18px;
-
-            border-radius:18px;
-
             font-size:17px;
-
             font-weight:600;
 
             cursor:pointer;
 
-            transition:0.35s ease;
-
-            margin-top:10px;
-
-            box-shadow:
-            0 15px 30px rgba(255,94,98,0.25);
+            transition:0.35s;
         }
 
-        button:hover{
+        .submit-btn:hover{
 
-            transform:
-            translateY(-4px);
+            transform:translateY(-3px);
 
-            box-shadow:
-            0 22px 40px rgba(255,94,98,0.35);
-        }
-
-        /* BACK BUTTON */
-
-        .back-btn{
-
-            display:inline-block;
-
-            margin-bottom:30px;
-
-            color:white;
-
-            text-decoration:none;
-
-            background:
-            rgba(255,255,255,0.08);
-
-            padding:12px 20px;
-
-            border-radius:14px;
-
-            transition:0.3s ease;
-
-            border:
-            1px solid rgba(255,255,255,0.08);
-        }
-
-        .back-btn:hover{
-
-            background:
-            rgba(255,255,255,0.12);
-
-            transform:
-            translateY(-2px);
-        }
-
-        /* DJANGO FORM FIX */
-
-        p{
-
-            margin-bottom:10px;
-        }
-
-        p label{
-
-            display:block;
-
-            margin-bottom:10px;
-        }
-
-        /* ANIMATION */
-
-        @keyframes fadeUp{
-
-            from{
-
-                opacity:0;
-
-                transform:translateY(30px);
-            }
-
-            to{
-
-                opacity:1;
-
-                transform:translateY(0);
-            }
+            box-shadow:0 12px 25px rgba(255,107,53,0.25);
         }
 
         /* RESPONSIVE */
 
-        @media(max-width:768px){
+        @media(max-width:850px){
 
-            body{
+            .form-grid{
 
-                padding:20px;
+                grid-template-columns:1fr;
             }
 
-            .container{
+            .hero h1{
+
+                font-size:42px;
+            }
+
+            .navbar{
+
+                flex-direction:column;
+                gap:18px;
+            }
+
+            .form-container{
 
                 padding:30px;
-            }
-
-            h1{
-
-                font-size:38px;
             }
         }
 
@@ -315,60 +335,320 @@
 
 <body>
 
-<div class="container">
+    <!-- NAVBAR -->
 
-    <a
-        href="/"
-        class="back-btn"
+    <div class="navbar">
+
+        <div class="logo">
+
+            🍳 CookMate
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/landing/">
+
+                Home
+
+            </a>
+
+            <a href="/home/">
+
+                Recommendations
+
+            </a>
+
+            <a href="/favorites/">
+
+                Favorites
+
+            </a>
+
+            <a href="/add-recipe/">
+
+                Add Recipe
+
+            </a>
+
+            <form
+    action="/logout/"
+    method="POST"
+    style="display:inline;"
+>
+
+    {% csrf_token %}
+
+    <button
+        type="submit"
+        class="logout-btn"
     >
 
-        ← Back To Home
+        Logout
 
-    </a>
+    </button>
 
-    <h1>
+</form>
 
-        ➕ Add Recipe
+        </div>
 
-    </h1>
+    </div>
 
-    <p class="subtitle">
+    <!-- HERO -->
 
-        Share your delicious recipe with CookMate
+    <div class="hero">
 
-    </p>
+        <h1>
 
-    <form
-        method="POST"
-        enctype="multipart/form-data"
-    >
+            Add Your
+            <span>Recipe</span>
 
-        {% csrf_token %}
+        </h1>
 
-        {{ form.as_p }}
+        <p>
 
-        <label>
+            Share delicious recipes with the CookMate community
 
-            Ingredients
+        </p>
 
-        </label>
+    </div>
 
-        <input
-            type="text"
-            name="ingredients"
-            placeholder="Enter ingredients separated by commas"
-            required
+    <!-- FORM -->
+
+    <div class="form-container">
+
+        <div class="section-title">
+
+            🍽 Recipe Information
+
+        </div>
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
         >
 
-        <button type="submit">
+            {% csrf_token %}
 
-            Save Recipe
+            <div class="form-grid">
 
-        </button>
+                <!-- NAME -->
 
-    </form>
+                <div class="input-group">
 
-</div>
+                    <label>
+
+                        Recipe Name
+
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Enter recipe name"
+                    >
+
+                </div>
+
+                <!-- COOKING TIME -->
+
+                <div class="input-group">
+
+                    <label>
+
+                        Cooking Time
+
+                    </label>
+
+                    <input
+                        type="number"
+                        placeholder="Minutes"
+                    >
+
+                </div>
+
+                <!-- DIFFICULTY -->
+
+                <div class="input-group">
+
+                    <label>
+
+                        Difficulty
+
+                    </label>
+
+                    <select>
+
+                        <option>
+
+                            Easy
+
+                        </option>
+
+                        <option>
+
+                            Medium
+
+                        </option>
+
+                        <option>
+
+                            Hard
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- CUISINE -->
+
+                <div class="input-group">
+
+                    <label>
+
+                        Cuisine Type
+
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Indian, Italian..."
+                    >
+
+                </div>
+
+                <!-- INGREDIENTS -->
+
+                <div class="input-group full-width">
+
+                    <label>
+
+                        Ingredients
+
+                    </label>
+
+                    <textarea
+                        placeholder="Enter ingredients separated by commas"
+                    ></textarea>
+
+                </div>
+
+                <!-- INSTRUCTIONS -->
+
+                <div class="input-group full-width">
+
+                    <label>
+
+                        Cooking Instructions
+
+                    </label>
+
+                    <textarea
+                        placeholder="Write step-by-step cooking instructions"
+                    ></textarea>
+
+                </div>
+
+                <!-- IMAGE -->
+
+                <div class="input-group full-width">
+
+                    <label>
+
+                        Recipe Image
+
+                    </label>
+
+                    <div class="file-box">
+
+                        📸 Upload recipe image
+
+                        <br>
+
+                        <input type="file">
+
+                    </div>
+
+                </div>
+
+                <!-- NUTRITION -->
+
+                <div class="input-group">
+
+                    <label>
+
+                        Calories
+
+                    </label>
+
+                    <input
+                        type="number"
+                        placeholder="Calories"
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+
+                        Protein
+
+                    </label>
+
+                    <input
+                        type="number"
+                        placeholder="Protein"
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+
+                        Carbs
+
+                    </label>
+
+                    <input
+                        type="number"
+                        placeholder="Carbs"
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+
+                        Fats
+
+                    </label>
+
+                    <input
+                        type="number"
+                        placeholder="Fats"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- BUTTON -->
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+
+                Save Recipe
+
+            </button>
+
+        </form>
+
+    </div>
 
 </body>
 

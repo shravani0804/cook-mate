@@ -5,12 +5,13 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>CookMate</title>
+    <title>CookMate Recommendations</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
     <style>
 
@@ -18,570 +19,518 @@
             margin:0;
             padding:0;
             box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
         }
 
-       body{
+        body{
 
-        font-family:'Poppins',sans-serif;
+            background:
+            linear-gradient(rgba(245,245,245,0.92),
+            rgba(245,245,245,0.95)),
+            url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop');
 
-        background:
-        linear-gradient(
-            rgba(4,8,20,0.82),
-            rgba(4,8,20,0.86)
-        ),
-        url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1800&auto=format&fit=crop');
-
-        background-size:cover;
-        background-position:center;
-        background-attachment:fixed;
-
-        color:white;
-        }
-        
-        .container{
-
-            width:92%;
-
-            max-width:1450px;
-
-            margin:auto;
-
-            padding:40px 0;
+            background-size:cover;
+            background-position:center;
+            background-attachment:fixed;
         }
 
-        /* HEADER */
-        .header{
+        /* NAVBAR */
 
-        position:relative;
+        .navbar{
 
-        background:
-        linear-gradient(
-            135deg,
-            rgba(255,140,66,0.88),
-            rgba(255,94,98,0.88)
-        );
+            width:100%;
+            padding:20px 70px;
+            background:white;
 
-        padding:70px 60px;
-
-        border-radius:35px;
-
-        margin-bottom:35px;
-
-        overflow:hidden;
-
-        box-shadow:
-        0 25px 45px rgba(0,0,0,0.35);
-
-        backdrop-filter:blur(12px);
-
-        transition:0.4s ease;
-    }
-
-    .header:hover{
-
-        transform:translateY(-5px);
-    }
-
-    .header::before{
-
-        content:'';
-
-        position:absolute;
-
-        top:-50px;
-        right:-50px;
-
-        width:250px;
-        height:250px;
-
-        background:
-        rgba(255,255,255,0.12);
-
-        border-radius:50%;
-    }
-
-    .header h1{
-
-        font-size:70px;
-
-        margin-bottom:18px;
-
-        font-weight:700;
-
-        position:relative;
-
-        z-index:2;
-    }
-
-    .header p{
-
-        font-size:22px;
-
-        opacity:0.95;
-
-        position:relative;
-
-        z-index:2;
-    }
-        
-
-        /* TOP BAR */
-
-        .top-bar{
             display:flex;
             justify-content:space-between;
             align-items:center;
+
+            box-shadow:0 2px 15px rgba(0,0,0,0.08);
+
+            position:sticky;
+            top:0;
+            z-index:100;
+        }
+
+        .logo{
+
+            font-size:34px;
+            font-weight:700;
+            color:#ff6b35;
+        }
+
+        .nav-links{
+
+            display:flex;
+            gap:35px;
+        }
+
+        .nav-links a{
+
+            text-decoration:none;
+            color:#333;
+            font-weight:500;
+            transition:0.3s;
+        }
+
+        .nav-links a:hover{
+
+            color:#ff6b35;
+        }
+
+        .logout-btn{
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    color:#333;
+
+    font-weight:500;
+
+    font-size:15px;
+
+    transition:0.3s;
+}
+
+.logout-btn:hover{
+
+    color:#ff6b35;
+}
+
+        /* HERO */
+
+        .hero{
+
+            width:90%;
+            margin:30px auto 20px auto;
+
+            display:grid;
+            grid-template-columns:1.1fr 0.9fr;
+            gap:40px;
+            align-items:center;
+        }
+
+        .hero-text h1{
+
+            font-size:48px;
+            line-height:1.2;
             margin-bottom:25px;
-            flex-wrap:wrap;
-            gap:15px;
+            color:#222;
         }
 
-        .top-left{
+        .hero-text span{
+
+            color:#ff6b35;
+        }
+
+        .hero-text p{
+
+            font-size:17px;
+            color:#555;
+            line-height:1.8;
+            margin-bottom:35px;
+        }
+
+        .hero-image img{
+
+            width:100%;
+            max-height:360px;
+
+            object-fit:cover;
+
+            border-radius:30px;
+
+            box-shadow:0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        /* SEARCH SECTION */
+
+        .search-section{
+
+            width:92%;
+            margin:-20px auto 40px auto;
+
+            background:white;
+            padding:45px;
+
+            border-radius:30px;
+
+            box-shadow:0 15px 40px rgba(0,0,0,0.12);
+
+            position:relative;
+            z-index:5;
+        }
+
+        .search-section h2{
+
+            font-size:38px;
+            margin-bottom:15px;
+        }
+
+        .search-section p{
+
+            color:#666;
+            margin-bottom:30px;
+        }
+
+        /* INPUT AREA */
+
+        .ingredient-wrapper{
+
             display:flex;
-            align-items:center;
             gap:15px;
             flex-wrap:wrap;
+            margin-bottom:20px;
         }
 
-        .top-right{
-            display:flex;
-            gap:12px;
-            align-items:center;
+        .ingredient-wrapper input{
+
+            flex:1;
+            min-width:250px;
+
+            padding:18px;
+
+            border:none;
+            border-radius:14px;
+
+            background:#f4f4f4;
+
+            font-size:16px;
+            outline:none;
         }
 
-        .welcome{
-            font-size:18px;
-            font-weight:600;
-        }
+        .add-btn{
 
-        /* BUTTONS */
-
-       .btn{
-
-            padding:13px 24px;
+            padding:18px 24px;
 
             border:none;
 
             border-radius:14px;
 
-            cursor:pointer;
+            background:#222;
 
-            text-decoration:none;
-
-            font-size:15px;
+            color:white;
 
             font-weight:600;
 
-            transition:0.35s ease;
+            cursor:pointer;
 
-            display:inline-flex;
-
-            align-items:center;
-
-            justify-content:center;
-
-            gap:10px;
+            transition:0.3s;
         }
 
-        .btn-primary{
-
-            background:
-            linear-gradient(
-                135deg,
-                #ff8c42,
-                #ff5e62
-            );
-
-            color:white;
-
-            box-shadow:
-            0 12px 25px rgba(255,94,98,0.25);
-        }
-
-        .btn-primary:hover{
-
-            transform:translateY(-3px);
-
-            box-shadow:
-            0 18px 35px rgba(255,94,98,0.38);
-        }
-
-        .btn-secondary{
-
-            background:
-            linear-gradient(
-                135deg,
-                #22c55e,
-                #16a34a
-            );
-
-            color:white;
-        }
-
-        .btn-secondary:hover{
+        .add-btn:hover{
 
             transform:translateY(-3px);
         }
 
-        /* CARD */
+        /* INGREDIENT CHIPS */
 
-        .card{
-            
+        #ingredientsContainer{
 
-        background:
-        rgba(15,23,42,0.82);
-
-        backdrop-filter:blur(14px);
-
-        border-radius:28px;
-
-        padding:32px;
-
-        margin-bottom:35px;
-
-        border:1px solid rgba(255,255,255,0.08);
-
-        box-shadow:
-        0 15px 35px rgba(0,0,0,0.28);
-
-        transition:0.4s ease;
-    }
-
-    .card:hover{
-
-        transform:translateY(-5px);
-
-        box-shadow:
-        0 25px 45px rgba(0,0,0,0.38);
-    }
-
-    .card h2{
-
-        margin-bottom:25px;
-
-        color:white;
-
-        font-size:34px;
-    }
-        
-        /* INGREDIENT INPUT */
-
-        .ingredient-box{
-            display:flex;
-            gap:12px;
-            margin-bottom:20px;
-        }
-
-        .ingredient-box input{
-            flex:1;
-            padding:14px;
-            border-radius:10px;
-            border:1px solid #ddd;
-            font-size:15px;
-        }
-
-        .ingredient-tags{
             display:flex;
             flex-wrap:wrap;
-            gap:10px;
-            margin-bottom:20px;
+            gap:12px;
+
+            margin-bottom:25px;
         }
 
-        .tag{
-            background:#ffe4dc;
-            color:#ff5e62;
-            padding:10px 15px;
+        .ingredient-chip{
+
+            background:#ff6b35;
+
+            color:white;
+
+            padding:10px 16px;
+
             border-radius:30px;
-            font-size:14px;
+
             display:flex;
             align-items:center;
             gap:10px;
+
+            font-size:14px;
         }
 
-        .tag button{
-            background:none;
-            border:none;
-            color:#ff5e62;
+        .ingredient-chip span{
+
             cursor:pointer;
             font-weight:bold;
+        }
+
+        /* FIND BUTTON */
+
+        .find-btn{
+
+            padding:18px 35px;
+
+            border:none;
+
+            border-radius:14px;
+
+            background:linear-gradient(135deg,#ff6b35,#ff8e53);
+
+            color:white;
+
             font-size:16px;
+            font-weight:600;
+
+            cursor:pointer;
+
+            transition:0.3s;
         }
 
-        select{
-            width:100%;
-            padding:14px;
-            border-radius:10px;
-            border:1px solid #ddd;
-            margin-bottom:20px;
-            font-size:15px;
+        .find-btn:hover{
+
+            transform:translateY(-3px);
         }
 
-        /* RECENT SEARCH */
+        /* RECENT SEARCHES */
 
         .recent-searches{
-            margin-top:20px;
+
+            margin-top:35px;
         }
 
-        .recent-tags{
+        .recent-searches h3{
+
+            margin-bottom:15px;
+        }
+
+        .recent-container{
+
             display:flex;
             flex-wrap:wrap;
-            gap:10px;
-            margin-top:12px;
+            gap:12px;
         }
 
         .recent-item{
-            background:#eef2ff;
-            color:#3949ab;
-            padding:10px 15px;
-            border-radius:25px;
-            font-size:14px;
+
+            background:#f4f4f4;
+
+            padding:10px 18px;
+
+            border-radius:30px;
+
+            color:#555;
+        }
+
+        /* TITLE */
+
+        .section-title{
+
+            text-align:center;
+            margin-top:70px;
+            margin-bottom:40px;
+        }
+
+        .section-title h2{
+
+            font-size:48px;
+            margin-bottom:10px;
+        }
+
+        .section-title p{
+
+            color:#666;
         }
 
         /* RECIPE GRID */
 
         .recipe-grid{
+
+            width:90%;
+            margin:auto;
+
             display:grid;
-            grid-template-columns:repeat(
-                auto-fit,
-                minmax(350px,1fr)
-            );
-            gap:25px;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:30px;
+
+            padding-bottom:70px;
         }
 
-      .recipe-card{
+        .recipe-card{
 
-        background:
-        rgba(15,23,42,0.9);
+            background:white;
 
             border-radius:24px;
 
-        overflow:hidden;
+            overflow:hidden;
 
-        border:1px solid rgba(255,255,255,0.06);
+            box-shadow:0 10px 25px rgba(0,0,0,0.08);
 
-        box-shadow:
-            0 15px 35px rgba(0,0,0,0.28);
-
-        transition:0.45s ease;
+            transition:0.4s;
         }
 
         .recipe-card:hover{
 
-            transform:
-            translateY(-10px);
-
-            box-shadow:
-            0 30px 50px rgba(0,0,0,0.4);
+            transform:translateY(-10px);
+            box-shadow:0 18px 40px rgba(0,0,0,0.15);
         }
 
         .recipe-image{
-           width:100%;
 
-            height:240px;
-
+            width:100%;
+            height:230px;
             object-fit:cover;
-
-            transition:0.5s ease;
-        }
-
-        .recipe-card:hover .recipe-image{
-
-            transform:scale(1.08);
         }
 
         .recipe-content{
-              padding:25px;
 
-              color:white;
+            padding:22px;
         }
 
         .recipe-title{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
+
+            font-size:24px;
+            font-weight:700;
+            margin-bottom:12px;
+        }
+
+        .recipe-info{
+
+            color:#666;
+            margin-bottom:10px;
+        }
+
+        .score{
+
+            display:inline-block;
+
+            margin-top:10px;
             margin-bottom:15px;
-        }
 
-        .recipe-title h3{
-            color:#ff8c42;
+            padding:8px 14px;
 
-            font-size:28px;
+            border-radius:8px;
 
-             transition:0.3s;
-        }
+            background:#22c55e;
 
-        .favorite-btn{
-            text-decoration:none;
-            font-size:26px;
-        }
+            color:white;
 
-        .meta{
-            margin-bottom:15px;
-            color:#555;
-            line-height:1.7;
+            font-size:14px;
+            font-weight:600;
         }
 
         /* NUTRITION */
 
-        .nutrition-grid{
-            display:grid;
-            grid-template-columns:repeat(2,1fr);
-            gap:10px;
-            margin:15px 0;
-        }
+        .nutrition-box{
 
-        .nutri-card{
-            background:#f8f8f8;
-            padding:12px;
-            border-radius:12px;
-            text-align:center;
-        }
-
-        .nutri-card h4{
-            margin:0;
-            color:#ff5e62;
-            font-size:18px;
-        }
-
-        .nutri-card span{
-            font-size:13px;
-            color:#666;
-        }
-
-        /* SCORES */
-
-        .score-container{
             display:flex;
             flex-wrap:wrap;
             gap:10px;
+
             margin-bottom:18px;
         }
 
-        .score{
-            padding:8px 12px;
-            border-radius:8px;
-            color:white;
-            font-size:13px;
-            font-weight:600;
-        }
+        .nutrition-item{
 
-        .match{
-            background:#4caf50;
-        }
+            background:#f4f4f4;
 
-        .health{
-            background:#2196f3;
-        }
+            padding:10px 14px;
 
-        .ease{
-            background:#ff9800;
-        }
-
-        .final{
-            background:#9c27b0;
-        }
-
-        /* MATCHED + MISSING */
-
-        .matched{
-            color:#2e7d32;
-            margin-bottom:10px;
-        }
-
-      .missing{
-            color:#d32f2f;
-            margin-bottom:15px;
-            background:#fff3f3;
-            padding:12px;
             border-radius:10px;
+
+            font-size:14px;
         }
 
-        .missing ul{
-            margin-top:8px;
-            padding-left:20px;
+        /* VIEW BUTTON */
+
+        .view-btn{
+
+            display:inline-block;
+
+            padding:12px 20px;
+
+            background:linear-gradient(135deg,#ff6b35,#ff8e53);
+
+            color:white;
+
+            text-decoration:none;
+
+            border-radius:10px;
+
+            font-weight:600;
+
+            transition:0.3s;
         }
 
-        .missing li{
-            margin-bottom:5px;
-        }
-        /* TRENDING */
+        .view-btn:hover{
 
-        .trending-grid{
-            display:grid;
-            grid-template-columns:repeat(
-                auto-fit,
-                minmax(250px,1fr)
-            );
-            gap:20px;
+            transform:scale(1.05);
         }
 
-                .trend-card{
+        .button-group{
 
-            background:
-            rgba(15,23,42,0.92);
-
-            border-radius:22px;
-
-            overflow:hidden;
-
-            border:1px solid rgba(255,255,255,0.06);
-
-            box-shadow:
-            0 12px 30px rgba(0,0,0,0.28);
-
-            transition:0.4s ease;
+            display:flex;
+            gap:12px;
+            flex-wrap:wrap;
         }
+ 
+        .button-group{
 
-        .trend-card:hover{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-            transform:
-            translateY(-8px);
+    margin-top:10px;
+}
 
-            box-shadow:
-            0 22px 40px rgba(196, 183, 183, 0.4);
-        }
+.heart-btn{
 
-        .trend-card img{
-            width:100%;
-            height:180px;
-            object-fit:cover;
-        }
+    width:48px;
+    height:48px;
 
-        .trend-card h4{
-             padding:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-                font-size:19px;
+    border-radius:50%;
 
-                color:white;
+    background:#fff0f0;
 
-                font-weight:600;
+    color:#ef4444;
 
-                line-height:1.5;
-        }
+    text-decoration:none;
 
-        /* SHOPPING LIST */
+    font-size:22px;
 
-        .shopping-list ul{
-            margin-top:15px;
-            padding-left:20px;
-        }
+    transition:0.3s;
 
-        .shopping-list li{
-            margin-bottom:12px;
-            font-size:16px;
-        }
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.heart-btn:hover{
+
+    transform:scale(1.12);
+
+    background:#ef4444;
+
+    color:white;
+}      
 
         /* RESPONSIVE */
 
-        @media(max-width:768px){
+        @media(max-width:900px){
 
-            .ingredient-box{
-                flex-direction:column;
+            .hero{
+
+                grid-template-columns:1fr;
+                text-align:center;
             }
 
-            .top-bar{
+            .hero-text h1{
+
+                font-size:48px;
+            }
+
+            .navbar{
+
                 flex-direction:column;
-                align-items:flex-start;
+                gap:20px;
             }
         }
 
@@ -591,566 +540,398 @@
 
 <body>
 
-<div class="container">
+    <!-- NAVBAR -->
 
-    <!-- HEADER -->
+    <div class="navbar">
 
-    <div class="header">
-
-        <h1>
+        <div class="logo">
             🍳 CookMate
-        </h1>
-
-        <p>
-            AI-Powered Recipe Recommendation
-            & Nutrition Analysis System
-        </p>
-
-    </div>
-
-    <!-- TOP BAR -->
-
-    <div class="top-bar">
-
-        <div class="top-left">
-
-            {% if user.is_authenticated %}
-
-            <div class="welcome">
-
-                Welcome,
-                <strong>
-                    {{ request.user.username }}
-                </strong>
-
-            </div>
-
-            {% endif %}
-
         </div>
 
-        <div class="top-right">
+        <div class="nav-links">
 
-            {% if user.is_authenticated %}
+            <a href="/landing/">Home</a>
 
-            <a
-                href="/add-recipe/"
-                class="btn btn-secondary"
-            >
-                + Add Recipe
-            </a>
+            <a href="/home/">Recommendations</a>
 
-            <a
-                href="/favorites/"
-                class="btn btn-primary"
-            >
-                Favorites
-            </a>
+            <a href="/favorites/">Favorites</a>
+
+            <a href="/add-recipe/">Add Recipe</a>
 
             <form
-                method="POST"
-                action="{% url 'logout' %}"
-            >
+    action="/logout/"
+    method="POST"
+    style="display:inline;"
+>
 
-                {% csrf_token %}
+    {% csrf_token %}
 
-                <button
-                    type="submit"
-                    class="btn btn-primary"
-                >
-                    Logout
-                </button>
+    <button
+        type="submit"
+        class="logout-btn"
+    >
 
-            </form>
+        Logout
 
-            {% else %}
+    </button>
 
-            <a
-                href="/accounts/login/"
-                class="btn btn-primary"
-            >
-                Login
-            </a>
-
-            <a
-                href="/signup/"
-                class="btn btn-secondary"
-            >
-                Signup
-            </a>
-
-            {% endif %}
+</form>
 
         </div>
 
     </div>
 
-    <!-- INGREDIENT SECTION -->
+    <!-- HERO -->
 
-    <div class="card">
+    <div class="hero">
 
-        <h2>🥗 Select Ingredients</h2>
+        <div class="hero-text">
 
-        <form
-            method="POST"
-            onsubmit="prepareIngredients()"
-        >
+            <h1>
+
+                Smart Recipe
+                <span>Recommendations</span>
+
+            </h1>
+
+            <p>
+
+                Enter ingredients you already have and
+                CookMate will recommend the best matching
+                recipes instantly.
+
+            </p>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1974&auto=format&fit=crop">
+
+        </div>
+
+    </div>
+
+    <!-- SEARCH SECTION -->
+
+    <div class="search-section">
+
+        <h2>
+            🥗 AI Recipe Recommendation
+        </h2>
+
+        <p>
+            Add ingredients and discover personalized recipes instantly
+        </p>
+
+        <!-- INPUT -->
+
+        <div class="ingredient-wrapper">
+
+            <input
+                type="text"
+                id="ingredientInput"
+                placeholder="Enter ingredient"
+            >
+
+            <button
+                type="button"
+                id="addIngredientBtn"
+                class="add-btn"
+            >
+
+                + Add Ingredient
+
+            </button>
+
+        </div>
+
+        <!-- CHIPS -->
+
+        <div id="ingredientsContainer">
+
+        </div>
+
+        <!-- FORM -->
+
+        <form method="POST"
+              id="recipeForm">
 
             {% csrf_token %}
-
-            <div class="ingredient-box">
-
-                <input
-                    type="text"
-                    id="ingredientInput"
-                    placeholder="Enter ingredient"
-                >
-
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    onclick="addIngredient()"
-                >
-                    Add
-                </button>
-
-            </div>
-
-            <div
-                class="ingredient-tags"
-                id="ingredientTags"
-            >
-            </div>
 
             <input
                 type="hidden"
                 name="ingredients"
-                id="hiddenIngredients"
+                id="finalIngredients"
             >
-
-            <select name="health_goal">
-
-                <option value="none">
-                    No Preference
-                </option>
-
-                <option value="weight_loss">
-                    Weight Loss
-                </option>
-
-                <option value="muscle_gain">
-                    Muscle Gain
-                </option>
-
-            </select>
 
             <button
                 type="submit"
-                class="btn btn-primary"
+                class="find-btn"
             >
-                Find Recipes
+
+                🔍 Find Recipes
+
             </button>
 
         </form>
 
-        <!-- RECENT SEARCH -->
+        <!-- RECENT SEARCHES -->
 
         {% if recent_searches %}
 
-        <div class="recent-searches">
+            <div class="recent-searches">
 
-            <h3>🕒 Recent Searches</h3>
+                <h3>
 
-            <div class="recent-tags">
+                    Recent Searches
 
-                {% for search in recent_searches %}
+                </h3>
 
-                <div class="recent-item">
+                <div class="recent-container">
 
-                    {{ search.ingredients }}
+                    {% for search in recent_searches %}
+
+                        <div class="recent-item">
+
+                            {{ search }}
+
+                        </div>
+
+                    {% endfor %}
 
                 </div>
 
-                {% endfor %}
-
             </div>
-
-        </div>
 
         {% endif %}
 
     </div>
 
-    <!-- TRENDING -->
+    <!-- RESULTS -->
 
-    {% if trending_recipes %}
+    {% if recipes %}
 
-    <div class="card">
+        <div class="section-title">
 
-        <h2>🔥 Trending Recipes</h2>
+            <h2>
+                🍽 Recommended Recipes
+            </h2>
 
-        <div class="trending-grid">
-
-            {% for recipe in trending_recipes %}
-
-            <div class="trend-card">
-
-                {% if recipe.image %}
-
-                <img src="{{ recipe.image.url }}">
-
-                {% endif %}
-
-                <h4>{{ recipe.name }}</h4>
-
-            </div>
-
-            {% endfor %}
+            <p>
+                Personalized recommendations based on your ingredients
+            </p>
 
         </div>
 
-    </div>
-
-    {% endif %}
-
-    <!-- RECOMMENDED -->
-
-    {% if recommended_recipes %}
-
-    <div class="card">
-
-        <h2>
-
-            🍽 Recommended Recipes
-
-            ({{ recommended_recipes|length }})
-
-        </h2>
-        
-         
         <div class="recipe-grid">
 
-            {% for item in recommended_recipes %}
+            {% for item in recipes %}
 
-             
-     
-            <div class="recipe-card">
+                <div class="recipe-card">
 
-                    <a
-                     {% if item.recipe.id %}
-                        href="{% url 'recipe_detail' item.recipe.id %}"
-                    {% endif %}
-                    >
+                    {% if item.recipe.image %}
 
-                {% if item.recipe.image %}
-
-                <img
-                    src="{{ item.recipe.image.url }}"
-                    class="recipe-image"
-                >
-
-                {% endif %}
-            </a>
-
-                <div class="recipe-content">
-
-                    <div class="recipe-title">
-
-                        <!---CLICKABLE TITLE--->
-
-                        <h3>
-                            <a
-                            {% if item.recipe.id %}
-                                href="{% url 'recipe_detail' item.recipe.id %}"
-                            {% endif %}
-                            style="
-                                text-decoration:none;
-                                color:#ff5e62;
-                            "
+                        <img
+                            src="{{ item.recipe.image.url }}"
+                            class="recipe-image"
                         >
 
+                    {% else %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1974&auto=format&fit=crop"
+                            class="recipe-image"
+                        >
+
+                    {% endif %}
+
+                    <div class="recipe-content">
+
+                        <div class="recipe-title">
 
                             {{ item.recipe.name }}
 
-                          </a>  
-                        </h3>
-                   
+                        </div>
 
-                        <!-- FAVORITE BUTTON -->
+                        <div class="recipe-info">
+
+                            ⏱ {{ item.recipe.cooking_time }} mins
+
+                        </div>
+
+                        <div class="recipe-info">
+
+                            ⭐ {{ item.recipe.difficulty }}
+
+                        </div>
+
+                        <div class="recipe-info">
+
+                            🌍 {{ item.recipe.cuisine }}
+
+                        </div>
+
+                        <div class="score">
+
+                            Match Score:
+                            {{ item.score }}
+
+                        </div>
+
+                        {% if item.recipe.nutrition %}
+
+                            <div class="nutrition-box">
+
+                                <div class="nutrition-item">
+
+                                    🔥
+                                    {{ item.recipe.nutrition.calories }}
+                                    cal
+
+                                </div>
+
+                                <div class="nutrition-item">
+
+                                    💪
+                                    {{ item.recipe.nutrition.protein }}g Protein
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+                        <div class="button-group">
+
+                        <a
+                            href="/recipe/{{ item.recipe.id }}/"
+                            class="view-btn"
+                        >
+
+                            View Details →
+
+                        </a>
 
                         <a
                             href="/favorite/{{ item.recipe.id }}/"
-                            class="favorite-btn"
+                            class="heart-btn"
                         >
 
-                            {% if item.recipe.id in favorite_recipe_ids %}
-
-                            ❤️
-
-                            {% else %}
-
-                            🤍
-
-                            {% endif %}
+                            ❤️ 
 
                         </a>
 
                     </div>
-                      <!-- META -->
-                    <div class="meta">
-
-                        ⏱ Cooking Time:
-                        {{ item.recipe.cooking_time }} mins
-
-                        <br>
-
-                        📌 Difficulty:
-                        {{ item.recipe.difficulty }}
-
-                        <br>
-
-                        🍛 Cuisine:
-                        {{ item.recipe.cuisine }}
 
                     </div>
-
-                    <!-- NUTRITION -->
-
-                    <div class="nutrition-grid">
-
-                        <div class="nutri-card">
-                            <h4>
-                                {{ item.recipe.nutrition.calories|default:"0" }}
-                            </h4>
-                            <span>Calories</span>
-                        </div>
-
-                        <div class="nutri-card">
-                            <h4>
-                                {{ item.recipe.nutrition.protein|default:"0" }}g
-                            </h4>
-                            <span>Protein</span>
-                        </div>
-
-                        <div class="nutri-card">
-                            <h4>
-                                {{ item.recipe.nutrition.carbs|default:"0" }}g
-                            </h4>
-                            <span>Carbs</span>
-                        </div>
-
-                        <div class="nutri-card">
-                            <h4>
-                                {{ item.recipe.nutrition.fats|default:"0" }}g
-                            </h4>
-                            <span>Fats</span>
-                        </div>
-
-                    </div>
-
-                    <!-- SCORES -->
-
-                    <div class="score-container">
-
-                        <div class="score match">
-                            Match: {{ item.match_score }}
-                        </div>
-
-                        <div class="score health">
-                            Health: {{ item.health_score }}
-                        </div>
-
-                        <div class="score ease">
-                            Ease: {{ item.ease_score }}
-                        </div>
-
-                        <div class="score final">
-                            Final: {{ item.final_score }}
-                        </div>
-
-                    </div>
-                </div>  
-
-            </div>
-                    <!-- MATCHED INGREDIENTS -->
-
-                    {% if item.matched %}
-
-                    <div class="matched">
-
-                        <strong>Matched:</strong>
-
-                        {{ item.matched|join:", " }}
-
-                    </div>
-
-                    {% endif %}
-
-                    <!-- MISSING INGREDIENTS -->
-
-                    {% if item.missing %}
-
-                   <div class="missing">
-
-                    <strong>Missing Ingredients:</strong>
-
-                    <ul>
-
-                        {% for ingredient in item.missing %}
-
-                        <li>
-                            {{ ingredient }}
-                        </li>
-
-                        {% endfor %}
-
-                    </ul>
-
-                    </div>
-
-                    {% endif %}
-
-                    <!-- SHOPPING BUTTON -->
-
-                    <form
-                        method="POST"
-                        action="{% url 'add_to_shopping' item.recipe.id %}"
-                    >
-
-                        {% csrf_token %}
-
-                        <button
-                            type="submit"
-                            class="btn btn-primary"
-                        >
-                            Add These Missing Ingredients To Shopping List
-                        </button>
-
-                    </form>
 
                 </div>
-
-            </div>
-            </a>
 
             {% endfor %}
 
         </div>
 
-    </div>
-
     {% endif %}
 
-    <!-- SHOPPING LIST -->
+    <!-- SCRIPT -->
 
-    {% if shopping_list %}
+    <script>
 
-    <div class="card">
+        let ingredients = [];
 
-        <h2>🛒 Shopping List</h2>
+        const input =
+            document.getElementById("ingredientInput");
 
-        <div class="shopping-list">
+        const addBtn =
+            document.getElementById("addIngredientBtn");
 
-            <ul>
+        const container =
+            document.getElementById("ingredientsContainer");
 
-                {% for item in shopping_list %}
+        const hiddenInput =
+            document.getElementById("finalIngredients");
 
-                <li>
+        const form =
+            document.getElementById("recipeForm");
 
-                    {{ item.ingredient.name }}
+        /* ADD INGREDIENT */
 
-                </li>
+        addBtn.addEventListener("click", () => {
 
-                {% endfor %}
+            const value =
+                input.value.trim();
 
-            </ul>
+            if(value !== ""){
 
-        </div>
+                ingredients.push(value);
 
-        <br>
+                renderIngredients();
 
-        <a
-            href="/clear-shopping-list/"
-            class="btn btn-primary"
-        >
-            Clear Shopping List
-        </a>
+                input.value = "";
+            }
+        });
 
-    </div>
+        /* ENTER KEY */
 
-    {% endif %}
+        input.addEventListener("keypress", function(e){
 
-</div>
+            if(e.key === "Enter"){
 
-<script>
+                e.preventDefault();
 
-    let ingredients = [];
+                addBtn.click();
+            }
+        });
 
-    function addIngredient(){
+        /* RENDER */
 
-        let input =
-            document.getElementById(
-                "ingredientInput"
-            );
+        function renderIngredients(){
 
-        let value =
-            input.value.trim().toLowerCase();
+            container.innerHTML = "";
 
-        if(value !== ""){
+            ingredients.forEach((ingredient,index) => {
 
-            ingredients.push(value);
+                container.innerHTML += `
+
+                    <div class="ingredient-chip">
+
+                        ${ingredient}
+
+                        <span onclick="removeIngredient(${index})">
+
+                            ×
+
+                        </span>
+
+                    </div>
+
+                `;
+            });
+
+            hiddenInput.value =
+                ingredients.join(",");
+        }
+
+        /* REMOVE */
+
+        function removeIngredient(index){
+
+            ingredients.splice(index,1);
 
             renderIngredients();
-
-            input.value = "";
         }
-    }
 
-    function removeIngredient(index){
+        /* SUBMIT */
 
-        ingredients.splice(index,1);
+        form.addEventListener("submit", function(){
 
-        renderIngredients();
-    }
-
-    function renderIngredients(){
-
-        let container =
-            document.getElementById(
-                "ingredientTags"
-            );
-
-        container.innerHTML = "";
-
-        ingredients.forEach((item,index)=>{
-
-            container.innerHTML += `
-            
-            <div class="tag">
-
-                ${item}
-
-                <button
-                    type="button"
-                    onclick="removeIngredient(${index})"
-                >
-                    ×
-                </button>
-
-            </div>
-            
-            `;
+            hiddenInput.value =
+                ingredients.join(",");
         });
-    }
 
-    function prepareIngredients(){
-
-        document.getElementById(
-            "hiddenIngredients"
-        ).value = ingredients.join(",");
-    }
-
-</script>
+    </script>
 
 </body>
+
 </html>

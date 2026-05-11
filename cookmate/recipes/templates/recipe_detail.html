@@ -298,6 +298,28 @@
             0 22px 40px rgba(255,94,98,0.35);
         }
 
+        .logout-btn{
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    color:#333;
+
+    font-weight:500;
+
+    font-size:15px;
+
+    transition:0.3s;
+}
+
+.logout-btn:hover{
+
+    color:#ff6b35;
+}
+
         @keyframes fadeUp{
 
             from{
@@ -336,6 +358,8 @@
 
                 font-size:28px;
             }
+
+
         }
 
     </style>
@@ -516,7 +540,24 @@
 
                 </a>
 
-            </div>
+                <form
+    action="/logout/"
+    method="POST"
+    style="display:inline;"
+>
+
+    {% csrf_token %}
+
+    <button
+        type="submit"
+        class="logout-btn"
+    >
+
+        Logout
+
+    </button>
+
+</form>  
 
         </div>
 

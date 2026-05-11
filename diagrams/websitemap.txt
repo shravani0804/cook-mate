@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<WebsiteMap>
+
+    <Page name="Login Page">
+        <URL>/login/</URL>
+    </Page>
+
+    <Page name="Signup Page">
+        <URL>/signup/</URL>
+    </Page>
+
+    <Page name="Home Page">
+        <URL>/</URL>
+
+        <SubPage name="Trending Recipes">
+            <URL>/</URL>
+        </SubPage>
+
+        <SubPage name="Recipe Details">
+            <URL>/recipe/&lt;id&gt;/</URL>
+        </SubPage>
+    </Page>
+
+    <Page name="Recommendation Page">
+        <URL>/recommend/</URL>
+
+        <SubPage name="Ingredient Input">
+            <URL>/recommend/</URL>
+        </SubPage>
+
+        <SubPage name="Recommended Recipes">
+            <URL>/recommend/</URL>
+        </SubPage>
+    </Page>
+
+    <Page name="Favorites Page">
+        <URL>/favorites/</URL>
+    </Page>
+
+    <Page name="Shopping List Page">
+        <URL>/shopping-list/</URL>
+    </Page>
+
+    <Page name="Add Recipe Page">
+        <URL>/add-recipe/</URL>
+    </Page>
+
+    <Page name="Admin Dashboard">
+        <URL>/admin-dashboard/</URL>
+
+        <SubPage name="Recipe Management">
+            <URL>/admin/recipes/recipe/</URL>
+        </SubPage>
+    </Page>
+
+    <Page name="Logout">
+        <URL>/logout/</URL>
+    </Page>
+
+</WebsiteMap>

@@ -3,6 +3,7 @@ from django.urls import path, include
 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
 
@@ -13,6 +14,12 @@ urlpatterns = [
     path(
         'accounts/',
         include('django.contrib.auth.urls')
+    ),
+
+    path(
+        'logout/',
+        LogoutView.as_view(next_page='/accounts/login/'),
+        name='logout'
     ),
 ]
 
