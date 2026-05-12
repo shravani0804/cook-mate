@@ -167,6 +167,36 @@
             color:#ff6b35;
         }
 
+        .manage-btn{
+
+            display:inline-block;
+
+            text-decoration:none;
+
+            background:linear-gradient(
+                135deg,
+                #ff6b35,
+                #ff8e53
+            );
+
+            color:white;
+
+            padding:12px 22px;
+
+            border-radius:12px;
+
+            font-weight:600;
+
+            transition:0.3s;
+        }
+
+        .manage-btn:hover{
+
+            transform:translateY(-3px);
+
+            box-shadow:0 8px 18px rgba(255,107,53,0.25);
+        }
+
         /* SECTION */
 
         .dashboard-section{
@@ -488,6 +518,35 @@
             </div>
 
         </div>
+        
+        <div class="stat-card">
+
+    <div class="stat-icon">
+
+        ✏️
+
+    </div>
+
+    <div class="stat-title">
+
+        Manage Recipes
+
+    </div>
+
+    <div style="margin-top:20px;">
+
+        <a
+            href="/admin/"
+            class="manage-btn"
+        >
+
+            Edit Recipes
+
+        </a>
+
+    </div>
+
+</div>        
 
     </div>
 
