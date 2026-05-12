@@ -355,7 +355,24 @@
 
             </a>
 
-            <a href="/logout/">Logout</a>
+             <form
+                action="/logout/"
+                method="POST"
+                style="display:inline;"
+            >
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="logout-btn"
+                >
+
+                    Logout
+
+                </button>
+
+            </form>
 
         </div>
 

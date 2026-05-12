@@ -483,25 +483,28 @@ def add_to_shopping(request, recipe_id):
 # ADD RECIPE
 
 @login_required
+@login_required
 def add_recipe(request):
 
-    ingredients = Ingredient.objects.all()
+    if request.method == "POST":
 
-    if request.method == 'POST':
+        # BASIC DATA
 
-        name = request.POST.get('name')
+        name = request.POST.get("name")
 
-        instructions = request.POST.get('instructions')
+        instructions = request.POST.get("instructions")
 
-        cooking_time = request.POST.get('cooking_time')
+        cooking_time = request.POST.get("cooking_time")
 
-        difficulty = request.POST.get('difficulty')
+        difficulty = request.POST.get("difficulty")
 
-        image = request.FILES.get('image')
+        cuisine = request.POST.get("cuisine")
 
-        selected_ingredients = request.POST.getlist(
-            'ingredients'
-        )
+        image = request.FILES.get("image")
+
+        ingredients_text = request.POST.get("ingredients")
+
+        # CREATE RECIPE
 
         recipe = Recipe.objects.create(
 
@@ -513,45 +516,57 @@ def add_recipe(request):
 
             difficulty=difficulty,
 
+            cuisine=cuisine,
+
             image=image,
 
             user=request.user
         )
 
-        for ingredient_id in selected_ingredients:
+        # INGREDIENTS
 
-            ingredient = Ingredient.objects.get(
-                id=ingredient_id
+        ingredients_list = ingredients_text.split(",")
+
+        for ingredient_name in ingredients_list:
+
+            ingredient_name = ingredient_name.strip().lower()
+
+            ingredient, created = Ingredient.objects.get_or_create(
+
+                name=ingredient_name
             )
 
             recipe.ingredients.add(ingredient)
 
-        Nutrition.objects.create(
+        # NUTRITION
 
-            recipe=recipe,
+        calories = request.POST.get("calories")
 
-            calories=200,
+        protein = request.POST.get("protein")
 
-            protein=10,
+        carbs = request.POST.get("carbs")
 
-            carbs=20,
+        fats = request.POST.get("fats")
 
-            fats=5
-        )
+        if calories and protein and carbs and fats:
 
-        return redirect('/home/')
+            Nutrition.objects.create(
 
-    return render(
+                recipe=recipe,
 
-        request,
+                calories=calories,
 
-        'add_recipe.html',
+                protein=protein,
 
-        {
+                carbs=carbs,
 
-            'ingredients': ingredients
-        }
-    )
+                fats=fats
+            )
+
+        return redirect("/landing/")
+
+    return render(request, "add_recipe.html")
+    
 
 
 # RECIPE DETAIL
